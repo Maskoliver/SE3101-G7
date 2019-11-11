@@ -13,13 +13,15 @@ import { AngularFireAuthModule, AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { NavbarComponent } from './layouts/navbar/navbar.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { ContactComponent } from './pages/contact/contact.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
     NavbarComponent,
-    ProfileComponent
+    ProfileComponent,
+    ContactComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebaseConfig),
