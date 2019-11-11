@@ -11,10 +11,8 @@ export class MainComponent implements OnInit {
   constructor(private db: AngularFirestore) { }
 
   ngOnInit() {
-    this.db.collection("test").doc("test").get().subscribe(resp => {
-      var x = resp.data()["test"];
-      console.log(x);
-    })
+
+
   }
 
 }

@@ -11,11 +11,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuthModule, AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { NavbarComponent } from './layouts/navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainComponent
+    MainComponent,
+    NavbarComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebaseConfig),
