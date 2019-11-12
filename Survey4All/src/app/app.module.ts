@@ -11,9 +11,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule, AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { NavbarComponent } from './layouts/navbar/navbar.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ContactComponent } from './pages/contact/contact.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ContactComponent } from './pages/contact/contact.component';
     MainComponent,
     NavbarComponent,
     ProfileComponent,
-    ContactComponent
+    ContactComponent,
+    FooterComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebaseConfig),
