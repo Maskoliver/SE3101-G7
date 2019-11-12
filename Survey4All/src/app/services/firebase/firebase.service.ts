@@ -7,4 +7,7 @@ import { FirebaseApp } from "@angular/fire";
 export class FirebaseService {
 
   constructor(private router: Router, private firebase: FirebaseApp) { }
+
+
+
 }

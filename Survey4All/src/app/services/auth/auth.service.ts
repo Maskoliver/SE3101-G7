@@ -15,6 +15,14 @@ export class AuthService {
     if (curUser) {
       return curUser.email;
     }
-    return "Unregistered";
+    return 'Unregistered';
+  }
+
+  register(email: string, password: string) {
+    this.firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
+
+    }).catch(Error => {
+      console.log(Error);
+    })
   }
 }
