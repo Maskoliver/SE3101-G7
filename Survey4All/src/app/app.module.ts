@@ -1,3 +1,4 @@
+import { FirebaseService } from 'src/app/services/firebase/firebase.service';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -17,6 +18,7 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { AuthService } from './services/auth/auth.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,7 @@ import { RegisterComponent } from './pages/register/register.component';
     MDBBootstrapModule.forRoot(),
     FormsModule,
   ],
-  providers: [],
+  providers: [AuthService, FirebaseService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Router } from "@angular/router";
 import { FirebaseApp, } from "@angular/fire";
+import { FirebaseService } from '../firebase/firebase.service';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private router: Router, private firebase: FirebaseApp) {
+  constructor(private router: Router, private firebase: FirebaseApp, ) {
 
   }
 
@@ -19,10 +20,18 @@ export class AuthService {
   }
 
   register(email: string, password: string) {
-    this.firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
+    return this.firebase.auth().createUserWithEmailAndPassword(email, password);
+  }
 
-    }).catch(Error => {
-      console.log(Error);
-    })
+  login(email: string, password: string) {
+    return this.firebase.auth().signInWithEmailAndPassword(email, password);
+  }
+
+  logout() {
+    this.firebase.auth().signOut().then(() => {
+      this.router.navigate(['main']);
+    }).catch(err => {
+      alert(err);
+    });
   }
 }
