@@ -1,3 +1,5 @@
+import { RegisterComponent } from './pages/register/register.component';
+import { LoginComponent } from './pages/login/login.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MainComponent } from './pages/main/main.component';
@@ -8,6 +10,8 @@ const routes: Routes = [
     { path: 'main', component: MainComponent },
     { path: 'profile', component: ProfileComponent },
     { path: 'contact', component: ContactComponent },
+    { path: 'login', component: LoginComponent },
+    { path: 'register', component: RegisterComponent },
 ];
 
 @NgModule({
