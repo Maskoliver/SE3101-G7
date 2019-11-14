@@ -1,0 +1,9 @@
+<div class="container">
+    <h1 style="color: pink" class="animated bounce infinite">Survey Results</h1>
+    <div style="display: block">
+        <canvas mdbChart [chartType]="chartType" [datasets]="chartDatasets" [labels]="chartLabels"
+            [colors]="chartColors" [options]="chartOptions" [legend]="true" (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)">
+        </canvas>
+    </div>
+</div>

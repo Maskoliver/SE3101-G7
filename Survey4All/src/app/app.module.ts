@@ -20,6 +20,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { AuthService } from './services/auth/auth.service';
 import { BrowseComponent } from './pages/browse/browse.component';
+import { ResultComponent } from './pages/result/result.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { BrowseComponent } from './pages/browse/browse.component';
     FooterComponent,
     LoginComponent,
     RegisterComponent,
-    BrowseComponent
+    BrowseComponent,
+    ResultComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebaseConfig),

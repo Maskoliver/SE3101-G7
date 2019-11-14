@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-browse',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BrowseComponent implements OnInit {
 
-  constructor() { }
+
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
-
+  goResults() {
+    this.router.navigate(['result']);
+  }
 }
