@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { MainComponent } from './pages/main/main.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ContactComponent } from './pages/contact/contact.component';
+import { BrowseComponent } from './pages/browse/browse.component';
 const routes: Routes = [
     { path: '', redirectTo: 'main', pathMatch: 'full' },
     { path: 'main', component: MainComponent },
@@ -13,6 +14,7 @@ const routes: Routes = [
     { path: 'contact', component: ContactComponent },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
+    { path: 'browse', component: BrowseComponent }
 ];
 
 @NgModule({

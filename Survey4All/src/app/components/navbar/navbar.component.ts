@@ -45,4 +45,8 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['main']);
   }
 
+  goBrowse() {
+    this.router.navigate(['browse']);
+  }
+
 }
