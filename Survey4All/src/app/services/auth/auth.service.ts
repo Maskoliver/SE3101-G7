@@ -50,7 +50,7 @@ export class AuthService {
       this.navLoggedIn = true;
       this.curUser = this.getUserMail();
     }).catch(err => {
-      console.log(err);
+      alert(err);
     });
   }
 
