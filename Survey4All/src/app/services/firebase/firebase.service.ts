@@ -27,7 +27,7 @@ export class FirebaseService {
         timeCreated: curTime
       }).then(x => {
         setTimeout(() => {
-          this.router.navigate(['login']);
+          this.router.navigate(['main']);
         }, 200)
       }
       ).catch(
@@ -43,6 +43,7 @@ export class FirebaseService {
   logout() {
     this.authService.logout();
   }
+
 
   getUserMail() {
     const mail = this.authService.getUserMail();

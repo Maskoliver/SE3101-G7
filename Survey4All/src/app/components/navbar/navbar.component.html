@@ -6,6 +6,7 @@
 
     <ul class="navbar-nav ml-auto">
 
+
       <li class="nav-item ">
         <a class="nav-link waves-light" (click)="goContact()" mdbWavesEffect>
           <mdb-icon fas icon="envelope"></mdb-icon> Contact Us
@@ -27,6 +28,13 @@
         </a>
       </li>
 
+      <div *ngIf="authService.navLoggedIn">
+        <li class="nav-item" *ngIf="authService.curUserType == 'admin'">
+          <a class="nav-link waves-light" mdbWavesEffect (click)="goLogin()">
+            <mdb-icon fas icon="sign-in-alt"></mdb-icon>Admin Panel
+          </a>
+        </li>
+      </div>
       <li class="nav-item dropdown" dropdown *ngIf="authService.navLoggedIn">
         <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
           <mdb-icon fas icon="user"></mdb-icon> {{authService.curUser}}<span class="caret"></span>

@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import { FirebaseApp, } from "@angular/fire";
 import { FirebaseService } from '../firebase/firebase.service';
 import * as rx from 'rxjs';
+import { firestore } from 'firebase';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,12 +13,16 @@ export class AuthService {
   isLoggedIn = new rx.BehaviorSubject<boolean>(false);
   curUser: string;
   redirectUrl: string;
+  curUserType: string;
   constructor(private router: Router, private firebase: FirebaseApp, private fireauth: AngularFireAuth) {
     this.fireauth.authState.subscribe((user) => {
       if (user) {
         this.isLoggedIn.next(true);
         this.navLoggedIn = true;
         this.curUser = this.getUserMail();
+        this.firebase.firestore().collection("users").doc(this.curUser).get().then(userInfo => {
+          this.curUserType = userInfo.data()['userType'];
+        })
         if (this.redirectUrl) {
           this.router.navigate([this.redirectUrl]);
         }
@@ -45,13 +50,20 @@ export class AuthService {
 
   login(email: string, password: string) {
     this.firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
-      this.router.navigate(['main']);
       this.isLoggedIn.next(true);
       this.navLoggedIn = true;
       this.curUser = this.getUserMail();
+      this.firebase.firestore().collection("users").doc(this.curUser).get().then(userInfo => {
+        this.curUserType = userInfo.data()['userType'];
+      }).then(() => {
+        this.router.navigate(['main']);
+      })
     }).catch(err => {
       alert(err);
     });
+  }
+  getUserInfo() {
+    return this.firebase.firestore().collection('users').doc(this.curUser);
   }
 
   logout() {
@@ -60,6 +72,7 @@ export class AuthService {
       this.curUser = 'Unregistered';
       this.isLoggedIn.next(false);
       this.navLoggedIn = false;
+      this.curUserType = "none";
     }).catch(err => {
       alert(err);
     });

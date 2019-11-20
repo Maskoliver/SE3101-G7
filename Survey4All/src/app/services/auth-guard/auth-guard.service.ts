@@ -19,6 +19,7 @@ export class AuthGuardService {
   canActivate(state: RouterStateSnapshot, route: ActivatedRouteSnapshot) {
 
     this.authService.redirectUrl = state.url;
+    console.log(this.authService.isLoggedIn);
     if (this.authService.isLoggedIn) {
       return true;
     } else {
