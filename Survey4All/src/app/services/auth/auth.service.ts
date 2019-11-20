@@ -76,5 +76,9 @@ export class AuthService {
     }).catch(err => {
       alert(err);
     });
+    
   }
+  contact(name:String,email:String,subject:String,message:String){
+      
+    }
 }

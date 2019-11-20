@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FirebaseService } from 'src/app/services/firebase/firebase.service';
+
 
 @Component({
   selector: 'app-contact',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactComponent implements OnInit {
 
-  constructor() { }
+  constructor(private fbService: FirebaseService) { }
 
   ngOnInit() {
   }
+  contact(name:string,email:string,subject:string,message:string){
+    this.fbService.contact(name,email,subject,message);
 
+  }
 }

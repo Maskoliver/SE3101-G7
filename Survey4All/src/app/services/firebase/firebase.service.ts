@@ -43,6 +43,20 @@ export class FirebaseService {
   logout() {
     this.authService.logout();
   }
+  contact(name:string,email:string,subject:string,message:string){
+      //this.authService.contact(name,email,subject,message)
+      //eski array ile yeni arryi join yap!!
+      var complaints=[];
+      complaints.push(message);
+      console.log(message)
+      const incomingMails=firestore().collection('incomingMails');
+      incomingMails.doc(email).set({
+       complaints,
+       email,
+       name
+      });
+      
+  }
 
 
   getUserMail() {
