@@ -3,6 +3,8 @@ import { Router } from "@angular/router";
 import { FirebaseApp } from "@angular/fire";
 import { AuthService } from '../auth/auth.service';
 import { firestore } from 'firebase';
+import { SourceListMap } from 'source-list-map';
+
 
 @Injectable({
   providedIn: 'root'
@@ -44,19 +46,37 @@ export class FirebaseService {
     this.authService.logout();
   }
   contact(name:string,email:string,subject:string,message:string){
-      //this.authService.contact(name,email,subject,message)
-      //eski array ile yeni arryi join yap!!
+      //kullanıcı exist ise şikayetler kullanıcının kendi şikayet arrayine kaydedilir yoksa yeni bir kullanıcı oluştuurlup içine kaydeder
       var complaints=[];
-      complaints.push(message);
-      console.log(message)
       const incomingMails=firestore().collection('incomingMails');
-      incomingMails.doc(email).set({
-       complaints,
-       email,
-       name
-      });
+      this.firebase.firestore().collection("incomingMails").doc(email).get().then(userInfo => {// data okuma yapısı
+        
+        if(userInfo.exists){
+          complaints = userInfo.data()['complaints'];
+          complaints.push(message);
+          incomingMails.doc(email).set({//data yazma yapısı
+            complaints,
+            email,
+            name
+            });
+      }else{
+          
+          complaints.push(message);
+          incomingMails.doc(email).set({
+          complaints,
+          email,
+          name
+          });
+      }
+    
+    })
+     
+  
+}
       
-  }
+      
+     
+  
 
 
   getUserMail() {
