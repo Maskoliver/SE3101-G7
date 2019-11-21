@@ -44,12 +44,12 @@
             </div>
             <div  class="text-center">
               
-                <button (click)="contact(name,email,subject,message)" name="submit" type="submit" mdbBtn gradient="purple" block="true"  rounded="true" class="z-depth-1a waves-light"
+                <button *ngIf="submitClick" (click)="contact(name,email,subject,message)" name="submit" type="submit" mdbBtn gradient="purple" block="true"  rounded="true" class="z-depth-1a waves-light"
                 mdbWavesEffect>Submit
               </button>
              
                
-              <div class="alert alert-success" role="alert" name="alert" disabled="true">
+              <div *ngIf="!submitClick" class="alert alert-success" role="alert" disabled="true">
                 Your Complaint is Received :)
               </div>
              
