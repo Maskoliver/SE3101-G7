@@ -42,11 +42,20 @@
               <textarea [(ngModel)]="message" id="form-text" class="form-control md-textarea" rows="3" mdbInput></textarea>
               <label for="form-text">Send message</label>
             </div>
-            <div class="text-center">
-              <button (click)="contact(name,email,subject,message)" type="button" mdbBtn gradient="purple" block="true" rounded="true" class="z-depth-1a waves-light"
+            <div  class="text-center">
+              
+                <button (click)="contact(name,email,subject,message)" name="submit" type="submit" mdbBtn gradient="purple" block="true"  rounded="true" class="z-depth-1a waves-light"
                 mdbWavesEffect>Submit
               </button>
+             
+               
+              <div class="alert alert-success" role="alert" name="alert" disabled="true">
+                Your Complaint is Received :)
+              </div>
+             
+              
             </div>
+            
           </div>
         </div>
         <!-- Form with header -->
