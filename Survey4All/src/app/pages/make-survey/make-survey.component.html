@@ -1,0 +1,79 @@
+<button type="button" mdbBtn color="default" rounded="true" (click)="frame.show()" mdbWavesEffect>Add Question
+</button>
+<button type="button" mdbBtn color="default" rounded="true" (click)="saveSurvey()" mdbWavesEffect>Save Survey
+</button>
+<div>
+  <table mdbTable>
+    <thead>
+      <tr>
+        <th scope="col">Question Number</th>
+        <th scope="col">Question Title</th>
+        <th scope="col">Question Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr mdbTableCol *ngFor="let q of qList;index as i">
+        <th scope="row">{{i+1}}</th>
+        <td scope="row">{{q.qTitle}}</td>
+        <td scope="row">{{q.qType}}</td>
+
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div mdbModal #frame="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-notify modal-warning" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Header-->
+      <div class="modal-header text-center">
+        <h4 class="modal-title white-text w-100 font-weight-bold py-2">New Question</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+          <span aria-hidden="true" class="white-text">&times;</span>
+        </button>
+      </div>
+
+      <!--Body-->
+      <div class="modal-body">
+        <div class="md-form mb-5">
+          <mdb-icon fas icon="user" class="prefix grey-text"></mdb-icon>
+          <input type="text" id="form3" class="form-control" mdbInput [(ngModel)]="qTitle">
+          <label for="form3">Question Title</label>
+
+        </div>
+        <div class="form-check form-check-inline">
+          <input type="radio" class="form-check-input" id="Single" name="inlineMaterialRadiosExample" mdbInput
+            (click)="changeisMultiple('single')">
+          <label class="form-check-label" for="Single">Single Choice</label>
+        </div>
+
+        <div class="form-check form-check-inline" style="text-align: end;">
+          <input type="radio" class="form-check-input" id="Multiple" name="inlineMaterialRadiosExample" mdbInput
+            (click)="changeisMultiple('multiple')">
+          <label class="form-check-label" for="Multiple">Multiple Choice</label>
+        </div>
+        <div class="md-form" *ngFor="let a of answerList;index as i">
+          <mdb-icon fas icon="envelope" class="prefix grey-text"></mdb-icon>
+          <input type="text" class="form-control" [(ngModel)]="answerList[i].answerTitle" mdbInput>
+          <label>Answer {{i+1}}</label>
+        </div>
+        <a type="button" mdbBtn color="warning" outline="true" class="waves-effect" mdbWavesEffect
+          (click)="addAnswerPlace()">Add Answer
+          <mdb-icon far icon="paper-plane" class="ml-1"></mdb-icon>
+        </a>
+      </div>
+
+      <!--Footer-->
+      <div class="modal-footer justify-content-center">
+
+        <a type="button" mdbBtn color="warning" outline="true" class="waves-effect" mdbWavesEffect
+          (click)="saveQuestion()">Save Question
+          <mdb-icon far icon="paper-plane" class="ml-1"></mdb-icon>
+        </a>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>

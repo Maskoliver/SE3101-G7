@@ -22,6 +22,7 @@ import { AuthService } from './services/auth/auth.service';
 import { BrowseComponent } from './pages/browse/browse.component';
 import { ResultComponent } from './pages/result/result.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
+import { MakeSurveyComponent } from './pages/make-survey/make-survey.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password
     RegisterComponent,
     BrowseComponent,
     ResultComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    MakeSurveyComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebaseConfig),
