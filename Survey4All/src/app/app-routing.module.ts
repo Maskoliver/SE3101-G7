@@ -8,6 +8,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { BrowseComponent } from './pages/browse/browse.component';
 import { ResultComponent } from './pages/result/result.component';
+import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 const routes: Routes = [
     { path: '', redirectTo: 'main', pathMatch: 'full' },
     { path: 'main', component: MainComponent },
@@ -16,7 +17,10 @@ const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'browse', component: BrowseComponent },
-    { path: 'result', component: ResultComponent }
+    { path: 'result', component: ResultComponent },
+    { path: 'result', component: ResultComponent },
+    { path: 'forgotPassword', component: ForgotPasswordComponent },
+    
 ];
 
 @NgModule({

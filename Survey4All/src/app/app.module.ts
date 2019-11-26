@@ -21,6 +21,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { AuthService } from './services/auth/auth.service';
 import { BrowseComponent } from './pages/browse/browse.component';
 import { ResultComponent } from './pages/result/result.component';
+import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ResultComponent } from './pages/result/result.component';
     LoginComponent,
     RegisterComponent,
     BrowseComponent,
-    ResultComponent
+    ResultComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebaseConfig),
