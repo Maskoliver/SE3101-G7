@@ -5,6 +5,7 @@ import { FirebaseApp, } from "@angular/fire";
 import { FirebaseService } from '../firebase/firebase.service';
 import * as rx from 'rxjs';
 import { firestore } from 'firebase';
+import * as firebase from 'firebase';
 @Injectable({
   providedIn: 'root'
 })
@@ -76,9 +77,16 @@ export class AuthService {
     }).catch(err => {
       alert(err);
     });
-    
+
   }
-  contact(name:String,email:String,subject:String,message:String){
-      
-    }
+  contact(name: String, email: String, subject: String, message: String) {
+
+  }
+
+  resetPassword(email: string) {
+    var auth = firebase.auth();
+    return auth.sendPasswordResetEmail(email)
+      .then(() => console.log("email sent"))
+      .catch((error) => console.log(error))
+  }
 }
