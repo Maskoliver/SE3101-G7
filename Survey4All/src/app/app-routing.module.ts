@@ -1,3 +1,4 @@
+import { MakeSurveyComponent } from './pages/make-survey/make-survey.component';
 import { AuthGuardService } from './services/auth-guard/auth-guard.service';
 import { RegisterComponent } from './pages/register/register.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -18,9 +19,9 @@ const routes: Routes = [
     { path: 'register', component: RegisterComponent },
     { path: 'browse', component: BrowseComponent },
     { path: 'result', component: ResultComponent },
-    { path: 'result', component: ResultComponent },
+    { path: 'makesurvey', component: MakeSurveyComponent },
     { path: 'forgotPassword', component: ForgotPasswordComponent },
-    
+
 ];
 
 @NgModule({
