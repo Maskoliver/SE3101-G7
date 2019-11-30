@@ -1,0 +1,96 @@
+
+<div class="container my-5 py-5 z-depth-1">
+    
+<section class="px-md-5 mx-md-5 text-center text-lg-left dark-grey-text">
+    
+        <div class="row d-flex justify-content-center">
+        <div class="col-md-2" >
+                <div *ngIf="photoClick" (click)=umut() class="view overlay rounded z-depth-1-half mb-lg-0 mb-4 waves-light" mdbWavesEffect>
+                        <img  class="img-fluid" width=140 height=120
+                          src="https://www.jennstrends.com/wp-content/uploads/2013/10/bad-profile-pic-2-768x768.jpeg"
+                          alt="Sample image">
+                        <a >
+                          <div class="mask rgba-white-slight"></div>
+                        </a>
+                        
+                      </div>
+                      
+        </div>
+<div class="col-md-8">
+        
+    <!-- Default form Edit Profile -->
+    <form class="text-center" action="#!">
+        
+      <p class="h4 mb-4">Edit Profile</p>
+        
+      <div class="form-row mb-4">
+        <div class="col">
+          <!-- First name -->
+          <input type="text"  class="form-control" placeholder="Name"
+            [ngModelOptions]="{standalone: true}" [(ngModel)]="name">
+        </div>
+        <div class="col">
+          <!-- Last name -->
+          <input type="text" id="defaultRegisterFormLastName" class="form-control" placeholder="Surname"
+            [ngModelOptions]="{standalone: true}" [(ngModel)]="surname">
+        </div>
+      </div>
+
+      <!-- E-mail -->
+      <input type="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail"
+        [ngModelOptions]="{standalone: true}" [(ngModel)]="email">
+
+      <!-- Password -->
+      <input type="password" [(ngModel)]="password" class="form-control" placeholder="Password"
+        [ngModelOptions]="{standalone: true}">
+      <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+        At least 8 characters
+      </small>
+      <input type="password" [(ngModel)]="passwordCheck" class="form-control" placeholder="Password Again"
+        [ngModelOptions]="{standalone: true}">
+      <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+        Must be same as password
+      </small>
+      <input id="defaultRegisterPhonePassword" class="form-control" placeholder="Phone number"
+        [(ngModel)]="phone" [ngModelOptions]="{standalone: true}">
+     
+      <!-- Photo-->
+      <form *ngIf="!photoClick">
+            
+            <div class="md-form form">
+            <div class="form-group" >
+                    <div class="col-6" >
+              <input type="file" class="form-control-file " accept=".jpg, .jpeg, .png" id="exampleFormControlFile1">
+            </div>
+              <small id="defaultFormControlFile1HelpBlock" class="form-text text-muted mb-4">
+                    Bir Resim Dosyası Seçiniz
+                  </small>
+            
+        </div>
+    </div>
+          </form>
+      
+
+      <!-- Sign up button -->
+      <div class="md-form">
+      <button *ngIf="submitClick" mdbBtn gradient="purple" block="true" rounded="true" type="submit" class="z-depth-1a waves-light"
+        mdbWavesEffect (click)=edit()>Save
+      </button>
+      <div *ngIf="!submitClick" class="alert alert-success" role="alert" disabled="true">
+            You Saved Your Information :)
+          </div>
+      </div>
+    
+      
+
+      <!-- Terms of service -->
+
+
+    </form>
+    
+
+  </div>
+        </div>
+</section>
+    
+</div>

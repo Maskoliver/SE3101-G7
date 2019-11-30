@@ -10,6 +10,7 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { BrowseComponent } from './pages/browse/browse.component';
 import { ResultComponent } from './pages/result/result.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
+import {EditprofileComponent} from './pages/editprofile/editprofile.component';
 const routes: Routes = [
     { path: '', redirectTo: 'main', pathMatch: 'full' },
     { path: 'main', component: MainComponent },
@@ -21,7 +22,7 @@ const routes: Routes = [
     { path: 'result', component: ResultComponent },
     { path: 'makesurvey', component: MakeSurveyComponent },
     { path: 'forgotPassword', component: ForgotPasswordComponent },
-
+    { path: 'editprofile',component: EditprofileComponent}
 ];
 
 @NgModule({
