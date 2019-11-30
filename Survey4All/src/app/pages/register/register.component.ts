@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit {
 
   register(name: string, surname: string, email: string, password: string, passwordCheck: string, phone: string) {
     if (name != null) {
-      var username = name + surname;
+      var username = name +" "+ surname;
       if (email != null) {
         if (password.length >= 8) {
           if (password === passwordCheck) {
