@@ -26,7 +26,8 @@ export class FirebaseService {
         phone,
         uid,
         userType: 'user',
-        timeCreated: curTime
+        timeCreated: curTime,
+        photoUrl:"bad-profile-pic-2-768x768.jpeg"
       }).then(x => {
         setTimeout(() => {
           this.router.navigate(['main']);
@@ -74,7 +75,18 @@ export class FirebaseService {
   
 }
       
+      update(name: string, email: string, phone: string){
+        
+        const myUser=firestore().collection('users');
+        myUser.doc(email).update({
+          email,
+          name,
+          phone,
+         
+        });
+        
       
+      }
      
   
 
