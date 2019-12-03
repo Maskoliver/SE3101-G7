@@ -24,6 +24,7 @@ import { ResultComponent } from './pages/result/result.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { MakeSurveyComponent } from './pages/make-survey/make-survey.component';
 import { EditprofileComponent } from './pages/editprofile/editprofile.component';
+import { ViewSurveyComponent } from './view-survey/view-survey.component';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { EditprofileComponent } from './pages/editprofile/editprofile.component'
     ForgotPasswordComponent,
     MakeSurveyComponent,
     EditprofileComponent,
+    ViewSurveyComponent,
     
   ],
   imports: [
