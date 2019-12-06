@@ -25,6 +25,10 @@ import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password
 import { MakeSurveyComponent } from './pages/make-survey/make-survey.component';
 import { EditprofileComponent } from './pages/editprofile/editprofile.component';
 import { ViewSurveyComponent } from './view-survey/view-survey.component';
+import { UploadListComponent } from './uploads/upload-list/upload-list.component';
+import { UploadFormComponent } from './uploads/upload-form/upload-form.component';
+import { UploadService } from './uploads/shared/upload.service';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 
 
 @NgModule({
@@ -43,6 +47,9 @@ import { ViewSurveyComponent } from './view-survey/view-survey.component';
     MakeSurveyComponent,
     EditprofileComponent,
     ViewSurveyComponent,
+    UploadListComponent,
+    UploadFormComponent,
+    
     
   ],
   imports: [
@@ -54,8 +61,9 @@ import { ViewSurveyComponent } from './view-survey/view-survey.component';
     BrowserAnimationsModule,
     MDBBootstrapModule.forRoot(),
     FormsModule,
+    AngularFireDatabaseModule
   ],
-  providers: [AuthService, FirebaseService],
+  providers: [AuthService, FirebaseService,UploadService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

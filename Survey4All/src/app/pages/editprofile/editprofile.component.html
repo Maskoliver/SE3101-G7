@@ -13,9 +13,9 @@
       <p class="h4 mb-4">Edit Profile</p>
       
       <a >
-          <img src="https://www.jennstrends.com/wp-content/uploads/2013/10/bad-profile-pic-2-768x768.jpeg" width=140 height=150
-          class="rounded float-center" alt="Profile Photo">
-      </a>
+        <img src="https://dd5394a0b8ca8e97ba29-abf76f3d91a2125517d6c7c409f095c7.ssl.cf1.rackcdn.com/content/common/Models/2020/c8911878-a958-4b33-98f3-0932dc599fd8.png"   width=140 height=150
+        class="rounded float-center" alt="Profile Photo">
+    </a>
       
      
       
@@ -48,22 +48,30 @@
         <input type="text" name="phone" [(ngModel)]="phone" id="phone" class="form-control" >
         
       </div>
-      <div class="file-field md-form"> <div mdbBtn color="primary" size="sm" class="waves-light" mdbWavesEffect>
-        <span>Choose A Photo</span>
-        <input type="file" mdbFileSelect (change)="updatePhoto($event)" >
-      </div>
-      </div>
      
       <div class="center" >
       
             <a  (click)=resetPassword(email) style="color:indigo;" >
            <strong>Reset Password</strong>
         </a>
-
-      
-
       </div>
-        
+      <div *ngIf="currentUpload">
+        <div class="progress">
+          <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': currentUpload?.progress + '%' }"></div>
+        </div>
+        Progress:  | {{currentUpload?.progress}}% Complete
+      </div>
+      <div style="margin: 50px;"><label>
+             <input type="file" (change)="detectFiles($event)">
+          </label>
+      
+          <button
+                  [disabled]="!selectedFiles"
+                  (click)="uploadSingle()">
+      
+            Upload 
+          </button></div>
+          
         
       
       
