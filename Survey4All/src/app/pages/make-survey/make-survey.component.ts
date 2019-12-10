@@ -1,9 +1,10 @@
+import { FirebaseApp } from '@angular/fire';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { FirebaseService } from 'src/app/services/firebase/firebase.service';
 import { firestore } from 'firebase';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { FirebaseApp } from '@angular/fire';
+
 
 @Component({
   selector: 'app-make-survey',
@@ -52,16 +53,26 @@ export class MakeSurveyComponent implements OnInit {
   saveSurvey() {
     var Survey = { "qList": this.qList, "surveyName": "denemeSurvey" };
     var surveys = [];
-    surveys.push(Survey);
-    if (this.authService.curUser == 'Unregistered') {
-      alert("please log in first");
-    } else {
-      this.fs.firestore().collection("surveys").doc(this.authService.curUser).set(Object.assign({}, surveys)).then(() => {
-        alert("Survey Succesfully added");
-      }).catch(err => {
-        alert("There is an error : " + err);
-      });
-    }
+    this.fs.firestore().collection("surveys").doc(this.authService.curUser).get().then(mySurveys => {
+      surveys = mySurveys.data()["mySurveys"];
+      console.log(surveys);
+      surveys.push(Survey);
+
+
+      if (this.authService.curUser == 'Unregistered') {
+        alert("please log in first");
+      } else {
+        this.fs.firestore().collection("surveys").doc(this.authService.curUser).update({
+          mySurveys: surveys,
+        }).then(() => {
+          alert("Survey Succesfully added");
+        }).catch(err => {
+          alert("There is an error : " + err);
+        });
+
+      }
+    })
+
 
   }
 
