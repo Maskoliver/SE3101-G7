@@ -1,16 +1,18 @@
-<div class="container" style="padding: 8px;">
 <h2>Fill the Survey You Wish...</h2>
+<div class="container" style="padding: 8px;" *ngFor="let survey of surveys;index as i;let even = even"
+>
+
         <mdb-card style="background-color:rgba(216, 112, 147, 0.445)">
                 <!--Card content-->
                  <mdb-card-body>
                    <mdb-card-title>
-                     <h4>{{surveyName}}</h4>
+                     <h4>{{survey.surveyName}}</h4>
                    </mdb-card-title>
                    <mdb-card-text> How many social media sites do you have accounts with?
                    </mdb-card-text>
-                   <div class="custom-control custom-radio">
+                   <div class="custom-control custom-radio" >
                          <input type="radio" class="custom-control-input" id="defaultUnchecked" name="defaultExampleRadios" mdbInput>
-                         <label class="custom-control-label" for="defaultUnchecked">let q of question</label>
+                         <label class="custom-control-label" for="defaultUnchecked">{{survey.qTitle}}</label>
                        </div>
                    <a href="#" mdbBtn color="primary" mdbWavesEffect>Send</a>
                  </mdb-card-body>
