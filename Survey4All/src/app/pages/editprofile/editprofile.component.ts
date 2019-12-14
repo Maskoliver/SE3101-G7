@@ -15,15 +15,15 @@ import * as firebase from 'firebase/app'
 export class EditprofileComponent implements OnInit {
   submitClick:boolean=true;
   photoClick:boolean=true;
-  photoUrl:String;
+  photoUrl:string;
   photo:File=null;
   username:String[];
   getUsername:String;
   name:String;
   surname:String;
-  email:String;
+  email:string;
   phone:String;
-  namePhoto:String;
+  namePhoto:string;
   //password:
   selectedFiles: FileList;
   currentUpload: Upload;
@@ -60,12 +60,13 @@ export class EditprofileComponent implements OnInit {
       this.email = userInfo.data()['email'];
       this.getUsername = userInfo.data()['name'];
       this.phone = userInfo.data()['phone'];
-      //this.photoUrl=userInfo.data()['photoUrl'];
+      this.photoUrl=userInfo.data()['photoUrl'];
       this.username=this.getUsername.split(" ",2);
       this.name=this.username[0];
       this.surname=this.username[1];
       this.namePhoto=this.email;//email ismiyle fotoğrafı yükleyen satır
       //this.photoUrl=storageRef.toString();
+      this.upSvc.getProfileImageUrl(this.email,this.namePhoto)
       
       //console.log(this.photoUrl)
     }).catch(err => {
@@ -73,14 +74,11 @@ export class EditprofileComponent implements OnInit {
     });
     
   }
-  update(name:string,surname:string,email:string,phone:string,photoUrl:string){
+  update(name:string,surname:string,email:string,phone:string){
     var username=name+" "+surname;
-    this.fbService.update(username,email,phone);
-    
+    this.fbService.update(username,email,phone,);
+    this.loadUserInfo();
     this.submitClick=false;
   }
-  getProfilePhoto(email:String){
-    this.upSvc.getProfileImageUrl(email);
-    
-  }
+  
 }

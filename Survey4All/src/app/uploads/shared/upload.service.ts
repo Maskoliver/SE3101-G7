@@ -3,8 +3,10 @@ import {Upload} from './upload';
 import * as firebase from 'firebase/app'
 import {FirebaseListObservable} from '@angular/fire/database-deprecated'
 import { AngularFirestore } from '@angular/fire/firestore';
+import { firestore } from 'firebase';
 
 import { AngularFireDatabaseModule, AngularFireDatabase } from '@angular/fire/database';
+import { FirebaseService } from 'src/app/services/firebase/firebase.service';
 
 
 
@@ -16,7 +18,7 @@ export class UploadService {
   private uploadTask:firebase.storage.UploadTask;
   photoUrl:String;
   
-  constructor(private af:AngularFirestore, private db:AngularFireDatabase) { 
+  constructor(private af:AngularFirestore, private db:AngularFireDatabase,private fbService: FirebaseService) { 
     
   }
   pushUpload(upload:Upload,namePhoto:String){
@@ -67,9 +69,14 @@ export class UploadService {
     storageRef.child(`${this.basePath}/${name}`).delete()
     
   }
-  getProfileImageUrl(namePhoto:String){
+  getProfileImageUrl(email:string,namePhoto:string){
+    const myUser = firestore().collection('users');
     const storageRef = firebase.storage().ref().child('uploads/'+namePhoto+"/");
-     return storageRef.getDownloadURL().then();
+      storageRef.getDownloadURL().then(url => {
+        namePhoto=url;
+        this.fbService.updatePhoto(email,namePhoto)
+        
+    });
     
 }
 
