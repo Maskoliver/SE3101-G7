@@ -13,7 +13,7 @@
       <p class="h4 mb-4">Edit Profile</p>
       
       <a >
-        <img src="https://dd5394a0b8ca8e97ba29-abf76f3d91a2125517d6c7c409f095c7.ssl.cf1.rackcdn.com/content/common/Models/2020/c8911878-a958-4b33-98f3-0932dc599fd8.png"   width=140 height=150
+        <img src="{{photoUrl}}"   width=140 height=150
         class="rounded float-center" alt="Profile Photo">
     </a>
       
@@ -40,8 +40,8 @@
     
 
       <!-- E-mail -->
-      <div class="md-form">
-        <input type="text" name="email" [(ngModel)]="email" id="email" class="form-control" >
+      <div class="md-form" >
+       <strong>{{email}}</strong> 
         
       </div>
       <div class="md-form">
