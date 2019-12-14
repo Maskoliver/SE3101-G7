@@ -24,9 +24,6 @@ export class BrowseComponent implements OnInit {
             this.surveys.push(survey);
           })
         }
-
-
-        console.log(this.surveys);
       })
 
     })
