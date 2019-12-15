@@ -29,6 +29,7 @@ import { UploadListComponent } from './uploads/upload-list/upload-list.component
 import { UploadFormComponent } from './uploads/upload-form/upload-form.component';
 import { UploadService } from './uploads/shared/upload.service';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { FavoriteSurveyComponent } from './pages/favorite-survey/favorite-survey.component';
 
 
 @NgModule({
@@ -49,6 +50,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
     ViewSurveyComponent,
     UploadListComponent,
     UploadFormComponent,
+    FavoriteSurveyComponent,
     
     
   ],
