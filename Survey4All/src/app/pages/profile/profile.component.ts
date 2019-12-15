@@ -12,6 +12,7 @@ export class ProfileComponent implements OnInit {
   email: string;
   name: string;
   phone: string;
+  photoUrl:string;
 
   constructor(private fbService: FirebaseService, private authService: AuthService) {
 
@@ -30,6 +31,7 @@ export class ProfileComponent implements OnInit {
       this.email = userInfo.data()['email'];
       this.name = userInfo.data()['name'];
       this.phone = userInfo.data()['phone'];
+      this.photoUrl=userInfo.data()['photoUrl'];
     }).catch(err => {
       alert(err);
     });
