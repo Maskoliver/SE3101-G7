@@ -29,7 +29,7 @@ export class FirebaseService {
         uid,
         userType: 'user',
         timeCreated: curTime,
-        photoUrl: "bad-profile-pic-2-768x768.jpeg"
+        photoUrl: "https://firebasestorage.googleapis.com/v0/b/survey4all-214cs2018d.appspot.com/o/bad-profile-pic-2-768x768.jpeg?alt=media&token=2269240e-9367-41ca-8cef-c0b661bbee32"
       }).then(x => {
         newBabe.doc(email).set({
           mySurveys,
@@ -89,18 +89,18 @@ export class FirebaseService {
       email,
       name,
       phone,
-      
+
 
     });
 
 
   }
-  updatePhoto(email:string,photoUrl:string) {
+  updatePhoto(email: string, photoUrl: string) {
 
     const myUser = firestore().collection('users');
     myUser.doc(email).update({
       photoUrl
-      
+
 
     });
 
