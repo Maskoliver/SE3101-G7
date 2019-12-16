@@ -67,8 +67,10 @@
       
           <button
                   [disabled]="!selectedFiles"
-                  (click)="uploadSingle()">
-      
+                  (click)="uploadSingle()"
+                  
+                  >
+                  
             Upload 
           </button></div>
           
@@ -77,15 +79,52 @@
       
 
       <!-- Save button -->
+
+      <button type="button" mdbBtn color="primary" rounded="true" data-toggle="modal" data-target="#basicExample"
+  (click)="frame.show()" mdbWavesEffect>Launch Modal</button>
       <div class="md-form">
       <button *ngIf="submitClick" mdbBtn gradient="purple" block="true" rounded="true" type="submit" class="z-depth-1a waves-light"
-        mdbWavesEffect (click)=update(name,surname,email,phone)>Save
+        mdbWavesEffect  (click)="frame.show()">Save
       </button>
       <div *ngIf="!submitClick" class="alert alert-success" role="alert" disabled="true">
             You Saved Your Information :)
           </div>
       </div>
-    
+    <!-- Save butonuna bastığımızda çıkacak yer-->
+<div mdbModal  #frame="mdbModal" class="modal fade" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true" (open)="onOpen($event)">
+  <div class="modal-dialog modal-notify" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Header-->
+      <div style="background-color:rgb(128, 46, 187);" class="modal-header">
+        <p class="heading lead">Are You Sure ?</p>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+          <span aria-hidden="true" class="white-text">&times;</span>
+        </button>
+      </div>
+
+      <!--Body-->
+      <div  class="modal-body">
+        <div class="text-center">
+          <mdb-icon style="color:rgb(128, 46, 187)" fas icon="save" size="4x" class="mb-3 animated rotateIn"></mdb-icon>
+          <p>Are you want to save information ?</p>
+        </div>
+      </div>
+
+      <!--Footer-->
+      <div class="modal-footer justify-content-center">
+        <a type="button" mdbBtn  style="background-color:rgb(128, 46, 187)"  class="waves-light" mdbWavesEffect (click)="frame.hide()" (click)=update(name,surname,email,phone)>Save
+          
+        </a>
+        <a type="button"  style="color:rgb(128, 46, 187)" outline="true" class="waves-effect" mdbWavesEffect (click)="frame.hide()"
+          data-dismiss="modal">No, thanks</a>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
       
 
       <!-- Terms of service -->
