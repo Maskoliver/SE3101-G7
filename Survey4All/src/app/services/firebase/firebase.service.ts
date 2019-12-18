@@ -95,6 +95,8 @@ export class FirebaseService {
 
 
   }
+
+
   updatePhoto(email:string,photoUrl:string) {
 
     const myUser = firestore().collection('users');

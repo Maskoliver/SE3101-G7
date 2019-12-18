@@ -3,6 +3,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { AuthService } from '../services/auth/auth.service';
 import { snapshotChanges } from '@angular/fire/database';
 import { FirebaseApp } from '@angular/fire';
+import { FirebaseService } from '../services/firebase/firebase.service';
+import { FormGroup, FormControl, NgForm } from '@angular/forms';
 @Component({
   selector: 'app-view-survey',
   templateUrl: './view-survey.component.html',
@@ -16,55 +18,51 @@ export class ViewSurveyComponent implements OnInit {
   answerList = [];
   qList = [];
   surveyName = "";
-  qTitle="";
-  email = "";
+  qTitle = "";
+  email: string;
   surveys = [];
+  isSubmitted: boolean;
+  templateUnchecked = false;
+  templateChecked = true;
+  isSelected = false;
 
-  constructor(private db: FirebaseApp, private auth: AuthService) { }
+  template: any;
+  
+  constructor(private db: FirebaseApp, private fbService: FirebaseService, private auth: AuthService) { }
 
-  // db.collection("surveys").doc("deneme2@deneme.com").get().subscribe(resp => {
-  //var mySurveys = resp.data()["mySurveys"];
-  //this.qList = mySurveys[0].qList;
-  //   this.surveyName = mySurveys[0].surveyName;
-  //   this.qList = mySurveys.qList;
-  //   console.log(this.qList)
-  //   this.answerList = this.qList[0].answerList;
-  //   mySurveys.forEach(question => {
-  //     var question = question.data();
-  //     var qType = question.data()["qType"];
-  //     this.qTypes.push(qType);
-  //     var qTitle = question.data()["qTitle"];
-  //     this.qTitles.push(qTitle);
-  //     console.log(this.qTitles[0])
-  //   });
-  // });
 
   ngOnInit() {
-    this.db.firestore().collection("surveys").doc("deneme2@deneme.com").get().then(resp => {
-      var mySurveys = resp.data()["mySurveys"];
-      this.qList = mySurveys[0].qList;
-      this.surveyName = mySurveys[0].surveyName;
-      this.db.firestore().collection("surveys").get().then(surveysByUsers => {
-        this.surveys = [];
-        surveysByUsers.forEach(user => {
-          var oneUser = [];
-          if (user.data()["mySurveys"]) {
-            oneUser = user.data()["mySurveys"];
-            oneUser.forEach(survey => {
-              this.surveys.push(survey);
+        
+    this.db.firestore().collection("surveys").get().then(surveysByUsers => {
+      this.surveys = [];
+      surveysByUsers.forEach(user => {
+        var oneUser = [];
+        if (user.data()["mySurveys"]) {
+          oneUser = user.data()["mySurveys"];
+          oneUser.forEach(survey => {
+            this.surveys.push(survey);
 
-            })
-          }
-         console.log(this.qTitles[0])
-
-          console.log(this.surveys);
-        })
+          })
+        }
 
       })
-
+      this.qList = this.surveys[0].qList;
+      this.surveyName=this.surveys[0].surveyName;
+      console.log(this.qList);
     })
   }
+
+
+  getCheckboxesValue() {
+    console.log('ngModel value', this.isSelected);
+  }
+
+  updtselection(){
+
+  }
 }
+
+
 
 
 

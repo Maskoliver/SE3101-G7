@@ -1,24 +1,30 @@
 <h2 style="text-align: center; padding:5px">Fill the Survey You Wish...</h2>
 <div class="container">
     <h4>{{surveyName}}</h4>
-<div class="questions" style="padding: 8px;" *ngFor="let survey of surveys;index as i;let even = even">
+<div class="questions" style="padding: 8px;" *ngFor="let question of qList;index as i;let even = even">
 
         <mdb-card style="background-color:rgba(216, 112, 147, 0.445)">
                 <!--Card content-->
                  <mdb-card-body>
                    <mdb-card-title>
-                  
+                    {{question.qTitle}}
                    </mdb-card-title>
-                   <mdb-card-text> How many social media sites do you have accounts with?
+                   <mdb-card-text> <div></div>
                    </mdb-card-text>
-                   <div class="custom-control custom-radio" >
-                         <input type="radio" class="custom-control-input" id="defaultUnchecked" name="defaultExampleRadios" mdbInput>
-                         <label class="custom-control-label" for="defaultUnchecked">{{survey.qTitle}}</label>
-                       </div>
+                 <form>
+                  <div class="form-check" *ngFor="let answer of question.answerList">
+                    <input type="radio" class="form-check-input" id="materialUnchecked" name="materialExampleRadios"
+                           [(ngModel)]="answer.isSelected" [value]="true" (click)="updtselection(answer.isSelected)">
+                    <label class="form-check-label" for="materialUnchecked">{{answer.answerTitle}}</label>
+                  </div>
+             
+
+
+                 </form>
                  
                  </mdb-card-body>
                </mdb-card>
 </div>
-<a href="#" mdbBtn color="primary" mdbWavesEffect>Send</a>
-  
+<a  type="submit" mdbBtn color="primary" (click)="getCheckboxesValue()" mdbWavesEffect>Send</a>
+
 </div>
