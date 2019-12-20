@@ -1,33 +1,79 @@
-<button type="button" mdbBtn color="default" rounded="true" (click)="frame.show()" mdbWavesEffect>Add Question
-</button>
-<button type="button" mdbBtn color="default" rounded="true" (click)="saveSurvey()" mdbWavesEffect>Save Survey
-</button>
-<div>
-  <table mdbTable>
-    <thead>
-      <tr>
-        <th scope="col">Question Number</th>
-        <th scope="col">Question Title</th>
-        <th scope="col">Question Type</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr mdbTableCol *ngFor="let q of qList;index as i">
-        <th scope="row">{{i+1}}</th>
-        <td scope="row">{{q.qTitle}}</td>
-        <td scope="row">{{q.qType}}</td>
+<div class="container" style="text-align: center;">
 
-      </tr>
-    </tbody>
-  </table>
+  <h2 class="h1 pt-4">Survey Maker 1.0</h2>
+  <p class="pb-4">With the help of Survey maker you can make your own surveys and share it with everyone in matter of
+    minutes and 3 simple steps</p>
+  <div class="row">
+    <div class="col-md-12">
+      <ul class="stepper stepper-horizontal">
+        <li class="completed">
+          <a>
+            <span class="circle">1</span>
+            <span class="label">Enter a Title for your Survey</span>
+          </a>
+        </li>
+        <li class="active">
+          <a>
+            <span class="circle">2</span>
+            <span class="label">Add your questions</span>
+          </a>
+        </li>
+        <li class="active">
+          <a>
+            <span class="circle">3</span>
+            <span class="label">Save and Share your Survey</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="md-form" style="display: inline-block;width: 50%;font-weight: 700;color: blue;">
+
+    <input mdbInput placeholder="Test Survey" type="text" id="form58" class="form-control" style="font-size: 28px;"
+      [(ngModel)]="surveyName">
+    <label for="form58">Survey Title</label>
+
+
+  </div>
+  <div>
+    <h1 class="h2 pt-4">Question List</h1>
+    <table mdbTable>
+      <thead>
+        <tr>
+          <th scope="col">Question Number</th>
+          <th scope="col">Question Title</th>
+          <th scope="col">Question Type</th>
+          <th scope="col">Answers</th>
+          <th scope="col">Delete Question</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr mdbTableCol *ngFor="let q of qList;index as i">
+          <th scope="row">{{i+1}}</th>
+          <td scope="row">{{q.qTitle}}</td>
+          <td scope="row">{{q.qType}}</td>
+          <td scope="row">
+            <li *ngFor="let answer of q.answerList">
+              {{answer.answerTitle}}
+            </li>
+          </td>
+          <td><button style="background-color: red;color: white;" (click)="removeQuestion(i)">X</button></td>
+        </tr>
+      </tbody>
+    </table>
+    <button type="button" mdbBtn color="default" rounded="true" (click)="frame.show()" mdbWavesEffect>Add Question
+    </button>
+    <button type="button" mdbBtn color="default" rounded="true" (click)="saveSurvey()" mdbWavesEffect>Save Survey
+    </button>
+  </div>
+
 </div>
+
 
 <div mdbModal #frame="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog"
   aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-notify modal-warning" role="document">
-    <!--Content-->
     <div class="modal-content">
-      <!--Header-->
       <div class="modal-header text-center">
         <h4 class="modal-title white-text w-100 font-weight-bold py-2">New Question</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
@@ -35,7 +81,6 @@
         </button>
       </div>
 
-      <!--Body-->
       <div class="modal-body">
         <div class="md-form mb-5">
           <mdb-icon fas icon="user" class="prefix grey-text"></mdb-icon>

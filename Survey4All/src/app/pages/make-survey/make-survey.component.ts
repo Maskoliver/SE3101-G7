@@ -17,6 +17,7 @@ export class MakeSurveyComponent implements OnInit {
   qType = "";
   isMultiple = false;
   answerList = [];
+  surveyName = "";
   qList = [];
   constructor(private fs: FirebaseApp, private authService: AuthService) {
 
@@ -40,6 +41,10 @@ export class MakeSurveyComponent implements OnInit {
     this.qList.push(question);
   }
 
+  removeQuestion(index) {
+    this.qList.splice(index, 1);
+  }
+
   changeisMultiple(state: string) {
 
     if (state == 'single') {
@@ -51,29 +56,36 @@ export class MakeSurveyComponent implements OnInit {
   }
 
   saveSurvey() {
-    var Survey = { "qList": this.qList, "surveyName": "denemeSurvey" };
-    var surveys = [];
-    this.fs.firestore().collection("surveys").doc(this.authService.curUser).get().then(mySurveys => {
-      surveys = mySurveys.data()["mySurveys"];
-      console.log(surveys);
-      surveys.push(Survey);
+    if (!this.surveyName) {
+      alert("You have to enter a name for your Survey");
+    }
+    else if (this.qList.length == 0) {
+      alert("You have to add a question for your Survey");
+    }
+    else {
+      var Survey = { "qList": this.qList, "surveyName": this.surveyName };
+      var surveys = [];
+      this.fs.firestore().collection("surveys").doc(this.authService.curUser).get().then(mySurveys => {
+        surveys = mySurveys.data()["mySurveys"];
+        console.log(surveys);
+        surveys.push(Survey);
 
 
-      if (this.authService.curUser == 'Unregistered') {
-        alert("please log in first");
-      } else {
-        this.fs.firestore().collection("surveys").doc(this.authService.curUser).update({
-          mySurveys: surveys,
-        }).then(() => {
-          alert("Survey Succesfully added");
-        }).catch(err => {
-          alert("There is an error : " + err);
-        });
+        if (this.authService.curUser == 'Unregistered') {
+          alert("please log in first");
+        } else {
+          this.fs.firestore().collection("surveys").doc(this.authService.curUser).update({
+            mySurveys: surveys,
+          }).then(() => {
+            alert("Survey Succesfully added");
+          }).catch(err => {
+            alert("There is an error : " + err);
+          });
 
-      }
-    })
+        }
+      })
 
-
+    }
   }
 
 }
