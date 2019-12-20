@@ -80,8 +80,7 @@
 
       <!-- Save button -->
 
-      <button type="button" mdbBtn color="primary" rounded="true" data-toggle="modal" data-target="#basicExample"
-  (click)="frame.show()" mdbWavesEffect>Launch Modal</button>
+     
       <div class="md-form">
       <button *ngIf="submitClick" mdbBtn gradient="purple" block="true" rounded="true" type="submit" class="z-depth-1a waves-light"
         mdbWavesEffect  (click)="frame.show()">Save
@@ -91,10 +90,10 @@
           </div>
       </div>
     <!-- Save butonuna bastığımızda çıkacak yer-->
-<div mdbModal  #frame="mdbModal" class="modal fade" id="frameModalTop" tabindex="-1" role="dialog"
-  aria-labelledby="myModalLabel" aria-hidden="true" (open)="onOpen($event)">
+<div mdbModal  #frame="mdbModal" class="modal fade" id="frameModalTop" tabindex="1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true" >
   <div class="modal-dialog modal-notify" role="document">
-    <!--Content-->
+    <!--Content-->                                                                                                                                                                  
     <div class="modal-content">
       <!--Header-->
       <div style="background-color:rgb(128, 46, 187);" class="modal-header">
