@@ -1,30 +1,30 @@
 <h2 style="text-align: center; padding:5px">Fill the Survey You Wish...</h2>
 <div class="container">
-    <h4>{{surveyName}}</h4>
-<div class="questions" style="padding: 8px;" *ngFor="let question of qList;index as i;let even = even">
+  <h4>{{surveyName}}</h4>
+  <div class="questions" style="padding: 8px;" *ngFor="let question of qList;index as i;let even = even">
 
-        <mdb-card style="background-color:rgba(216, 112, 147, 0.445)">
-                <!--Card content-->
-                 <mdb-card-body>
-                   <mdb-card-title>
-                    {{question.qTitle}}
-                   </mdb-card-title>
-                   <mdb-card-text> <div></div>
-                   </mdb-card-text>
-                 <form>
-                  <div class="form-check" *ngFor="let answer of question.answerList">
-                    <input type="radio" class="form-check-input" id="materialUnchecked" name="materialExampleRadios"
-                           [(ngModel)]="answer.isSelected" [value]="true" (click)="updtselection(answer.isSelected)">
-                    <label class="form-check-label" for="materialUnchecked">{{answer.answerTitle}}</label>
-                  </div>
-             
+    <mdb-card style="background-color:rgba(216, 112, 147, 0.445)">
+      <!--Card content-->
+      <mdb-card-body>
+        <mdb-card-title>
+          {{question.qTitle}}
+        </mdb-card-title>
+        <mdb-card-text>
+          <div></div>
+        </mdb-card-text>
 
+        <div *ngFor="let answer of question.answerList; index as ind">     
+           <div *ngIf="answer.isSelected==true">
+          <button (click)="setStatus()" style="background-color:red">{{answer.answerTitle}}</button>
+        </div>
+        <div *ngIf="answer.isSelected==false">
+          <button  (click)="setStatus()" style="background-color:white"> {{answer.answerTitle}}</button>
+        </div>
 
-                 </form>
-                 
-                 </mdb-card-body>
-               </mdb-card>
-</div>
-<a  type="submit" mdbBtn color="primary" (click)="getCheckboxesValue()" mdbWavesEffect>Send</a>
+        </div>
+      </mdb-card-body>
+    </mdb-card>
+  </div>
+  <a type="submit" mdbBtn color="primary" (click)="getCheckboxesValue()" mdbWavesEffect>Send</a>
 
 </div>

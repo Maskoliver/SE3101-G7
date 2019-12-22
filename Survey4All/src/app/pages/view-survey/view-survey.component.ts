@@ -22,47 +22,49 @@ export class ViewSurveyComponent implements OnInit {
   email: string;
   surveys = [];
   isSubmitted: boolean;
-  templateUnchecked = false;
-  templateChecked = true;
+  isChosen = false;
   isSelected = false;
-
+  mysurveys = [];
   template: any;
-
+  selected = [];
+  qType: String;
+  answer: Object;
+  answers = [];
+  length = 0;
   constructor(private db: FirebaseApp, private fbService: FirebaseService, private auth: AuthService) { }
 
 
   ngOnInit() {
 
-    this.db.firestore().collection("surveys").get().then(surveysByUsers => {
-      this.surveys = [];
-      surveysByUsers.forEach(user => {
-        var oneUser = [];
-        if (user.data()["mySurveys"]) {
-          oneUser = user.data()["mySurveys"];
-          oneUser.forEach(survey => {
-            this.surveys.push(survey);
 
-          })
-        }
-
+    var user = [];
+    this.db.firestore().collection("surveys")
+      .doc("test@gmail.com")
+      .get()
+      .then(doc => {
+        user = doc.data()["mySurveys"];
+        user.forEach(survey => {
+          this.surveys.push(survey);
+        })
+        this.qList = this.surveys[0].qList;
+        this.surveyName = this.surveys[0].surveyName;
       })
-      this.qList = this.surveys[0].qList;
-      this.surveyName = this.surveys[0].surveyName;
-      console.log(this.qList);
-    })
+    console.log(this.surveys)
+
+    console.log(length)
   }
 
+  setStatus() {
+    if (this.isSelected == false) {
 
-  getCheckboxesValue() {
-    console.log('ngModel value', this.isSelected);
-  }
+      this.isSelected = true;
+    } else {
 
-  updtselection() {
-    this.db.firestore().collection("surveys").doc("admin@survey4all").update({
-      "isSelected": true,
-    });
+      this.isSelected = false;
+    }
   }
 }
+
 
 
 
