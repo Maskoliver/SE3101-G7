@@ -1,10 +1,11 @@
-import { AuthService } from './../../services/auth/auth.service';
+
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { snapshotChanges } from '@angular/fire/database';
 import { FirebaseApp } from '@angular/fire';
-import { FirebaseService } from './../../services/firebase/firebase.service';
 import { FormGroup, FormControl, NgForm } from '@angular/forms';
+import { FirebaseService } from 'src/app/services/firebase/firebase.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 @Component({
   selector: 'app-view-survey',
   templateUrl: './view-survey.component.html',
