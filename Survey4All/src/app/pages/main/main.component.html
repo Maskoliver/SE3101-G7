@@ -20,7 +20,8 @@
               <mdb-icon fas icon="envelope" class="left"></mdb-icon>
               Contact Us
             </a>
-            <a mdbBtn color="elegant" rounded="true" outline="true" mdbWavesEffect type="button" href="/makesurvey">
+            <a mdbBtn color="elegant" rounded="true" outline="true" mdbWavesEffect type="button" href="/makesurvey"
+              *ngIf="authService.curUser != 'Unregistered'">
               <mdb-icon fas icon="envelope" class="left"></mdb-icon>
               Create Survey
             </a>

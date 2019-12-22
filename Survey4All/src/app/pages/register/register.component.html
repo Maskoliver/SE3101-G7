@@ -55,22 +55,19 @@
                 [(ngModel)]="phone" [ngModelOptions]="{standalone: true}">
               <small></small>
               <!-- Newsletter -->
-              <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="defaultRegisterFormNewsletter">
-                <label class="custom-control-label" for="defaultRegisterFormNewsletter">I read and accept term and
-                  conditions</label>
-              </div>
+
 
               <!-- Sign up button -->
               <button mdbBtn gradient="purple" block="true" rounded="true" type="submit" class="z-depth-1a waves-light"
-                mdbWavesEffect (click)=register(name,surname,email,password,passwordCheck,phone)>Submit
+                mdbWavesEffect (click)=register(name,surname,email,password,passwordCheck,phone)
+                style="margin-top: 2%;">Submit
               </button>
 
-              <!-- Social register -->
+              <!-- Social register 
               <p>or sign up with:</p>
 
               <a href="#" class="mx-1" role="button"><i class="fab fa-facebook-f"></i></a>
-              <a href="#" class="mx-1" role="button"><i class="fab fa-google"></i></a>
+              <a href="#" class="mx-1" role="button"><i class="fab fa-google"></i></a>-->
               <hr>
 
               <!-- Terms of service -->

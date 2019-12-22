@@ -36,16 +36,24 @@ export class MakeSurveyComponent implements OnInit {
   }
 
   saveQuestion() {
-    if (this.isMultiple) {
-      this.qType = 'multiple';
+    if (!this.qTitle) {
+      alert("You have to enter a title for your question");
+    } else if (this.answerList.length <= 1) {
+      alert("You have to add at least 2 answers for the question");
     } else {
-      this.qType = 'single';
-    }
-    var question = { "qType": this.qType, "qTitle": this.qTitle, "answerList": this.answerList };
-    this.qList.push(question);
 
-    this.qTitle = "";
-    this.answerList = [];
+      if (this.isMultiple) {
+        this.qType = 'multiple';
+      } else {
+        this.qType = 'single';
+      }
+      var question = { "qType": this.qType, "qTitle": this.qTitle, "answerList": this.answerList };
+      this.qList.push(question);
+
+      this.qTitle = "";
+      this.answerList = [];
+      this.isMultiple = false;
+    }
   }
 
   removeQuestion(index) {
@@ -74,7 +82,6 @@ export class MakeSurveyComponent implements OnInit {
       var surveys = [];
       this.fs.firestore().collection("surveys").doc(this.authService.curUser).get().then(mySurveys => {
         surveys = mySurveys.data()["mySurveys"];
-        console.log(surveys);
         surveys.push(Survey);
 
 
@@ -85,6 +92,8 @@ export class MakeSurveyComponent implements OnInit {
             mySurveys: surveys,
           }).then(() => {
             alert("Survey Succesfully added");
+            this.qList = [];
+            this.qTitle = "";
           }).catch(err => {
             alert("There is an error : " + err);
           });

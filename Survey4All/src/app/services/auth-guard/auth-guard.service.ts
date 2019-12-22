@@ -23,7 +23,7 @@ export class AuthGuardService {
     if (this.authService.isLoggedIn) {
       return true;
     } else {
-      this.nav.navigate(['/']);
+      this.nav.navigate(['/main']);
       return false;
     }
 

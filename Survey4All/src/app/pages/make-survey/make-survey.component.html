@@ -93,7 +93,7 @@
 
         </div>
         <div class="form-check form-check-inline">
-          <input type="radio" class="form-check-input" id="Single" name="inlineMaterialRadiosExample" mdbInput
+          <input type="radio" checked class="form-check-input" id="Single" name="inlineMaterialRadiosExample" mdbInput
             (click)="changeisMultiple('single')">
           <label class="form-check-label" for="Single">Single Choice</label>
         </div>
@@ -103,18 +103,16 @@
             (click)="changeisMultiple('multiple')">
           <label class="form-check-label" for="Multiple">Multiple Choice</label>
         </div>
-        <div class="row">
 
-          <div *ngFor="let a of answerList;index as i">
-            <mdb-icon fas icon="envelope" class="prefix grey-text"></mdb-icon>
-            <input type="text" class="form-control" [(ngModel)]="answerList[i].answerTitle" mdbInput>
-            <label>Answer {{i+1}}</label>
-            <a type="button" mdbBtn color="danger" (click)="removeAnswerPlace(i)">
-              <mdb-icon fas icon="times" class="ml-1"></mdb-icon>
-            </a>
 
-          </div>
+        <div class="md-form" *ngFor="let a of answerList;index as i">
+          <mdb-icon fas icon="times" class="prefix red-text" (click)="removeAnswerPlace(i)"></mdb-icon>
+          <input type="text" class="form-control" [(ngModel)]="answerList[i].answerTitle" mdbInput>
+          <label>Answer {{i+1}}</label>
+
+
         </div>
+
 
         <a type="button" mdbBtn color="warning" outline="true" class="waves-effect" mdbWavesEffect
           (click)="addAnswerPlace()">Add Answer

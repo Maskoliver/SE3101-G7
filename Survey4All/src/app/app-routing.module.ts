@@ -21,7 +21,7 @@ const routes: Routes = [
     { path: 'register', component: RegisterComponent },
     { path: 'browse', component: BrowseComponent },
     { path: 'result', component: ResultComponent },
-    { path: 'makesurvey', component: MakeSurveyComponent },
+    { path: 'makesurvey', component: MakeSurveyComponent, canActivate: [AuthGuardService] },
     { path: 'forgotPassword', component: ForgotPasswordComponent },
     { path: 'editprofile', component: EditprofileComponent },
     { path: 'view-survey', component: ViewSurveyComponent },
