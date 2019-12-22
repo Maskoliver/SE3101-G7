@@ -58,7 +58,9 @@ export class ViewSurveyComponent implements OnInit {
   }
 
   updtselection(){
-
+    this.db.firestore().collection("surveys").doc("admin@survey4all").update({
+      "isSelected": true,
+  });
   }
 }
 
