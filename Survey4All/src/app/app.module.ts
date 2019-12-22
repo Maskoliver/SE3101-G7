@@ -24,7 +24,7 @@ import { ResultComponent } from './pages/result/result.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { MakeSurveyComponent } from './pages/make-survey/make-survey.component';
 import { EditprofileComponent } from './pages/editprofile/editprofile.component';
-import { ViewSurveyComponent } from './view-survey/view-survey.component';
+import { ViewSurveyComponent } from './pages/view-survey/view-survey.component';
 import { UploadListComponent } from './uploads/upload-list/upload-list.component';
 import { UploadFormComponent } from './uploads/upload-form/upload-form.component';
 import { UploadService } from './uploads/shared/upload.service';
@@ -53,8 +53,8 @@ import { SurveyFilterPipe } from './pages/browse/survey-filter.pipe';
     UploadFormComponent,
     FavoriteSurveyComponent,
     SurveyFilterPipe,
-    
-    
+
+
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebaseConfig),
@@ -66,10 +66,10 @@ import { SurveyFilterPipe } from './pages/browse/survey-filter.pipe';
     MDBBootstrapModule.forRoot(),
     FormsModule,
     AngularFireDatabaseModule,
-    ReactiveFormsModule 
- 
+    ReactiveFormsModule
+
   ],
-  providers: [AuthService, FirebaseService,UploadService],
+  providers: [AuthService, FirebaseService, UploadService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

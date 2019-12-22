@@ -45,6 +45,7 @@
           <th scope="col">Question Type</th>
           <th scope="col">Answers</th>
           <th scope="col">Delete Question</th>
+          <th scope="col">Edit Question</th>
         </tr>
       </thead>
       <tbody>
@@ -58,7 +59,10 @@
             </li>
           </td>
           <td><button style="background-color: red;color: white;" (click)="removeQuestion(i)">X</button></td>
+          <td scope="row"><button style="background-color:coral;color: white;" (click)="editQuestion(i)">Edit</button>
+          </td>
         </tr>
+
       </tbody>
     </table>
     <button type="button" mdbBtn color="default" rounded="true" (click)="frame.show()" mdbWavesEffect>Add Question
@@ -99,11 +103,19 @@
             (click)="changeisMultiple('multiple')">
           <label class="form-check-label" for="Multiple">Multiple Choice</label>
         </div>
-        <div class="md-form" *ngFor="let a of answerList;index as i">
-          <mdb-icon fas icon="envelope" class="prefix grey-text"></mdb-icon>
-          <input type="text" class="form-control" [(ngModel)]="answerList[i].answerTitle" mdbInput>
-          <label>Answer {{i+1}}</label>
+        <div class="row">
+
+          <div *ngFor="let a of answerList;index as i">
+            <mdb-icon fas icon="envelope" class="prefix grey-text"></mdb-icon>
+            <input type="text" class="form-control" [(ngModel)]="answerList[i].answerTitle" mdbInput>
+            <label>Answer {{i+1}}</label>
+            <a type="button" mdbBtn color="danger" (click)="removeAnswerPlace(i)">
+              <mdb-icon fas icon="times" class="ml-1"></mdb-icon>
+            </a>
+
+          </div>
         </div>
+
         <a type="button" mdbBtn color="warning" outline="true" class="waves-effect" mdbWavesEffect
           (click)="addAnswerPlace()">Add Answer
           <mdb-icon far icon="paper-plane" class="ml-1"></mdb-icon>

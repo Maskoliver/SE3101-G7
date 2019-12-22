@@ -31,6 +31,10 @@ export class MakeSurveyComponent implements OnInit {
     this.answerList.push(answer);
   }
 
+  removeAnswerPlace(index: number) {
+    this.answerList.splice(index, 1);
+  }
+
   saveQuestion() {
     if (this.isMultiple) {
       this.qType = 'multiple';
@@ -39,6 +43,9 @@ export class MakeSurveyComponent implements OnInit {
     }
     var question = { "qType": this.qType, "qTitle": this.qTitle, "answerList": this.answerList };
     this.qList.push(question);
+
+    this.qTitle = "";
+    this.answerList = [];
   }
 
   removeQuestion(index) {
@@ -60,7 +67,7 @@ export class MakeSurveyComponent implements OnInit {
       alert("You have to enter a name for your Survey");
     }
     else if (this.qList.length == 0) {
-      alert("You have to add a question for your Survey");
+      alert("You have to add at least 1 question for your Survey");
     }
     else {
       var Survey = { "qList": this.qList, "surveyName": this.surveyName };

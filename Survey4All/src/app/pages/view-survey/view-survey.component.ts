@@ -1,9 +1,9 @@
+import { AuthService } from './../../services/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { AuthService } from '../services/auth/auth.service';
 import { snapshotChanges } from '@angular/fire/database';
 import { FirebaseApp } from '@angular/fire';
-import { FirebaseService } from '../services/firebase/firebase.service';
+import { FirebaseService } from './../../services/firebase/firebase.service';
 import { FormGroup, FormControl, NgForm } from '@angular/forms';
 @Component({
   selector: 'app-view-survey',
@@ -27,12 +27,12 @@ export class ViewSurveyComponent implements OnInit {
   isSelected = false;
 
   template: any;
-  
+
   constructor(private db: FirebaseApp, private fbService: FirebaseService, private auth: AuthService) { }
 
 
   ngOnInit() {
-        
+
     this.db.firestore().collection("surveys").get().then(surveysByUsers => {
       this.surveys = [];
       surveysByUsers.forEach(user => {
@@ -47,7 +47,7 @@ export class ViewSurveyComponent implements OnInit {
 
       })
       this.qList = this.surveys[0].qList;
-      this.surveyName=this.surveys[0].surveyName;
+      this.surveyName = this.surveys[0].surveyName;
       console.log(this.qList);
     })
   }
@@ -57,10 +57,10 @@ export class ViewSurveyComponent implements OnInit {
     console.log('ngModel value', this.isSelected);
   }
 
-  updtselection(){
+  updtselection() {
     this.db.firestore().collection("surveys").doc("admin@survey4all").update({
       "isSelected": true,
-  });
+    });
   }
 }
 
