@@ -9,9 +9,11 @@ import { FirebaseService } from 'src/app/services/firebase/firebase.service';
   styleUrls: ['./browse.component.scss']
 })
 export class BrowseComponent implements OnInit {
-
+  filterText="";
   surveys = [];
-  constructor(private router: Router, private db: FirebaseApp) { }
+  constructor(private router: Router, private db: FirebaseApp) {
+    
+   }
 
   ngOnInit() {
     this.db.firestore().collection("surveys").get().then(surveysByUsers => {
