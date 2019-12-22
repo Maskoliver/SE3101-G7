@@ -52,8 +52,8 @@ import { SurveyFilterPipe } from './pages/browse/survey-filter.pipe';
     UploadFormComponent,
     FavoriteSurveyComponent,
     SurveyFilterPipe,
-    
-    
+
+
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebaseConfig),
@@ -65,10 +65,10 @@ import { SurveyFilterPipe } from './pages/browse/survey-filter.pipe';
     MDBBootstrapModule.forRoot(),
     FormsModule,
     AngularFireDatabaseModule,
-    ReactiveFormsModule 
- 
+    ReactiveFormsModule
+
   ],
-  providers: [AuthService, FirebaseService,UploadService],
+  providers: [AuthService, FirebaseService, UploadService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

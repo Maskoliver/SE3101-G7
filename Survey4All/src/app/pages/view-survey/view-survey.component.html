@@ -13,13 +13,13 @@
           <div></div>
         </mdb-card-text>
 
-        <div *ngFor="let answer of question.answerList; index as ind">     
-           <div *ngIf="answer.isSelected==true">
-          <button (click)="setStatus()" style="background-color:red">{{answer.answerTitle}}</button>
-        </div>
-        <div *ngIf="answer.isSelected==false">
-          <button  (click)="setStatus()" style="background-color:white"> {{answer.answerTitle}}</button>
-        </div>
+        <div *ngFor="let answer of question.answerList; index as ind">
+          <div *ngIf="answer.isSelected==true">
+            <button (click)="setStatus(ind,i)" style="background-color:red">{{answer.answerTitle}}</button>
+          </div>
+          <div *ngIf="answer.isSelected==false">
+            <button (click)="setStatus(ind,i)" style="background-color:white"> {{answer.answerTitle}}</button>
+          </div>
 
         </div>
       </mdb-card-body>
