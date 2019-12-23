@@ -57,26 +57,27 @@ export class ViewSurveyComponent implements OnInit {
   }
 
   setStatus(indexAnswer: number, indexQuestion: number) {
+
     var answerList = [];
     answerList = this.qList[indexQuestion].answerList;
     if (this.qList[indexQuestion].qType == "single") {
       for (var k = 0; k < answerList.length; k++) {
-     
-        if(k === indexAnswer){
+
+        if (k === indexAnswer) {
           console.log(k + " true");
-       answerList[k].isSelected=true;
-      }
-      else{
-        console.log(k + " false");
-        answerList[k].isSelected=false;
+          answerList[k].isSelected = true;
+        }
+        else {
+          console.log(k + " false");
+          answerList[k].isSelected = false;
+        }
       }
     }
-  }
-  else{
-    answerList[indexAnswer].isSelected=!answerList[indexAnswer].isSelected;
-  }
-    
-      
+    else {
+      answerList[indexAnswer].isSelected = !answerList[indexAnswer].isSelected;
+    }
+
+
     /*HTML kısmında sadece setstatus diyip çalıştırmıssın burdada this.isSelected == false yapmışssın ama kimin isSelectedi bu ?
     if (this.isSelected == false) {
 
@@ -92,36 +93,45 @@ export class ViewSurveyComponent implements OnInit {
     // bak sorumuzu aldık bile :) sadece indexini vermemiz yeterli
     // Soruyu aldıktan sorna bunun answerlistini bölmem gerek
 
-    
+
     //E cevaplarımızda geldi ne duruyoruz o zaman ? tek yapmamız gereken şuan sadece booleanı tersine çevirmek
-   
+
     //Burdan sonrasında işte single choicemu multiple mi bunların ayrımını yapmak ve sonra bunları kaydetmek sana kalıyor hadi ben kaçar.
-  
+
   }
 
   send() {
     var Survey = { "qList": this.qList, "surveyName": this.surveyName };
     var newResult;
-
-    this.db.firestore().collection("results").doc(this.auth.curUser).get().then(surveyResults => {
-      console.log(surveyResults.exists);
-      if (surveyResults.exists) {
-        newResult = surveyResults.data()['surveyResults'];
-        console.log(newResult);
-        newResult.push(Survey);
-        this.db.firestore().collection("results").doc(this.auth.curUser).update({
-          surveyResults: newResult,
-        })
+    
+    for (var z = 0; z < this.answerList[z].length; z++) {
+      if (this.answerList[z].isSelected == false) {
+        alert("Fill your survey please");
       }
       else {
-        var myResult = [];
-        myResult.push(Survey);
-        this.db.firestore().collection("results").doc(this.auth.curUser).set({
-          surveyResults: myResult
+
+        this.db.firestore().collection("results").doc(this.auth.curUser).get().then(surveyResults => {
+          console.log(surveyResults.exists);
+          if (surveyResults.exists) {
+            newResult = surveyResults.data()['surveyResults'];
+            console.log(newResult);
+            newResult.push(Survey);
+            this.db.firestore().collection("results").doc(this.auth.curUser).update({
+              surveyResults: newResult,
+            })
+          }
+          else {
+            var myResult = [];
+            myResult.push(Survey);
+            this.db.firestore().collection("results").doc(this.auth.curUser).set({
+              surveyResults: myResult
+            })
+          }
+
         })
       }
+    }
 
-    })
   }
 }
 
