@@ -1,4 +1,3 @@
-import { SharedService } from './../../services/shared/shared.service';
 
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
@@ -33,30 +32,28 @@ export class ViewSurveyComponent implements OnInit {
   answer: Object;
   answers = [];
   length = 0;
-  userName = "";
   answerTitle: any;
-  constructor(private db: FirebaseApp, private fbService: FirebaseService, private auth: AuthService, private sharedService: SharedService) { }
+  constructor(private db: FirebaseApp, private fbService: FirebaseService, private auth: AuthService) { }
 
 
   ngOnInit() {
 
-    this.sharedService.sharedCreator.subscribe(creator => this.userName = creator);
+
     var user = [];
     this.db.firestore().collection("surveys")
-      .doc(this.userName)
+      .doc("test@gmail.com")
       .get()
       .then(doc => {
         user = doc.data()["mySurveys"];
         user.forEach(survey => {
           this.surveys.push(survey);
         })
-        this.sharedService.sharedName.subscribe(head => this.surveyName = head);
-        for (let i = 0; i < this.surveys.length; i++) {
-          if (this.surveys[i].surveyName == this.surveyName) {
-            this.qList = this.surveys[i].qList;
-          }
-        }
+        this.qList = this.surveys[0].qList;
+        this.surveyName = this.surveys[0].surveyName;
       })
+    console.log(this.surveys)
+
+    console.log(length)
   }
 
   setStatus(indexAnswer: number, indexQuestion: number) {
@@ -79,6 +76,7 @@ export class ViewSurveyComponent implements OnInit {
     else {
       answerList[indexAnswer].isSelected = !answerList[indexAnswer].isSelected;
     }
+
 
     /*HTML kısmında sadece setstatus diyip çalıştırmıssın burdada this.isSelected == false yapmışssın ama kimin isSelectedi bu ?
     if (this.isSelected == false) {
@@ -105,7 +103,7 @@ export class ViewSurveyComponent implements OnInit {
   send() {
     var Survey = { "qList": this.qList, "surveyName": this.surveyName };
     var newResult;
-
+    
     for (var z = 0; z < this.answerList[z].length; z++) {
       if (this.answerList[z].isSelected == false) {
         alert("Fill your survey please");
