@@ -73,7 +73,7 @@ export class ViewSurveyComponent implements OnInit {
     }
   }
   else{
-    answerList[indexAnswer].isSelected=true;
+    answerList[indexAnswer].isSelected=!answerList[indexAnswer].isSelected;
   }
     
       
