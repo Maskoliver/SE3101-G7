@@ -1,3 +1,4 @@
+import { SharedService } from './../../services/shared/shared.service';
 import { FirebaseApp } from '@angular/fire';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -11,7 +12,10 @@ import { FirebaseService } from 'src/app/services/firebase/firebase.service';
 export class BrowseComponent implements OnInit {
   filterText = "";
   surveys = [];
-  constructor(private router: Router, private db: FirebaseApp) {
+  surveyCreators = [];
+  selectedUser = "";
+  user = "";
+  constructor(private router: Router, private db: FirebaseApp, private sharedService: SharedService) {
 
   }
 
@@ -19,15 +23,16 @@ export class BrowseComponent implements OnInit {
     this.db.firestore().collection("surveys").get().then(surveysByUsers => {
       this.surveys = [];
       surveysByUsers.forEach(user => {
+        this.user = user.id;
         var oneUser = [];
         if (user.data()["mySurveys"]) {
           oneUser = user.data()["mySurveys"];
           oneUser.forEach(survey => {
             this.surveys.push(survey);
+            this.surveyCreators.push(this.user);
           })
         }
       })
-
     })
 
   }
@@ -35,7 +40,9 @@ export class BrowseComponent implements OnInit {
     this.router.navigate(['result']);
   }
 
-  goView(name) {
-    this.router.navigate(['/view-survey/:name'])
+  goView(name, user) {
+    this.sharedService.goSurvey(name, user);
+    var name = name;
+    this.router.navigate(['/view-survey'])
   }
 }

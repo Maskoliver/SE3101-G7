@@ -1,3 +1,4 @@
+import { SharedService } from './services/shared/shared.service';
 import { FirebaseService } from 'src/app/services/firebase/firebase.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -68,7 +69,7 @@ import { SurveyFilterPipe } from './pages/browse/survey-filter.pipe';
     ReactiveFormsModule
 
   ],
-  providers: [AuthService, FirebaseService, UploadService],
+  providers: [AuthService, FirebaseService, UploadService, SharedService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
