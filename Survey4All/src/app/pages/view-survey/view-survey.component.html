@@ -1,12 +1,12 @@
-<h2 style="text-align: center; padding:5px">Fill the Survey You Wish...</h2>
+<h5 style="text-align: right; padding:5px">Fill the Survey You Wish...</h5>
 <div class="container">
-  <h4>{{surveyName}}</h4>
+  <h3 style="font-weight: bold;">{{surveyName}}</h3>
   <div class="questions" style="padding: 8px;" *ngFor="let question of qList;index as i;let even = even">
 
     <mdb-card style="background-color:rgba(216, 112, 147, 0.445)">
       <!--Card content-->
       <mdb-card-body>
-        <mdb-card-title>
+        <mdb-card-title style="font-weight: bold;">
           {{question.qTitle}}
         </mdb-card-title>
         <mdb-card-text>
@@ -15,10 +15,12 @@
 
         <div *ngFor="let answer of question.answerList; index as ind">
           <div *ngIf="answer.isSelected==true">
-            <button (click)="setStatus(ind,i)" style="background-color:red">{{answer.answerTitle}}</button>
+            <button style="background-color:#eb003d;height:25px;width:25px;border-radius: 100%;border-color: #eb003d;" (click)="setStatus(ind,i)"></button>
+            <span style="margin-top:-5%"> {{answer.answerTitle}}</span>
           </div>
           <div *ngIf="answer.isSelected==false">
-            <button (click)="setStatus(ind,i)" style="background-color:white"> {{answer.answerTitle}}</button>
+            <button style="background-color:white;height:25px;width:25px;border-radius: 100%;border-color: white;" (click)="setStatus(ind,i)"></button>
+            <span style="margin-top:-5%"> {{answer.answerTitle}}</span>
           </div>
 
         </div>

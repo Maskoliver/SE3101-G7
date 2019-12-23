@@ -35,6 +35,7 @@ export class ViewSurveyComponent implements OnInit {
   length = 0;
   userName = "";
   answerTitle: any;
+
   constructor(private db: FirebaseApp, private fbService: FirebaseService, private auth: AuthService, private sharedService: SharedService) { }
 
 
@@ -60,6 +61,7 @@ export class ViewSurveyComponent implements OnInit {
   }
 
   setStatus(indexAnswer: number, indexQuestion: number) {
+
     var answerList = [];
     answerList = this.qList[indexQuestion].answerList;
     if (this.qList[indexQuestion].qType == "single") {
@@ -75,7 +77,6 @@ export class ViewSurveyComponent implements OnInit {
         }
       }
     }
-
     else {
       answerList[indexAnswer].isSelected = !answerList[indexAnswer].isSelected;
     }
@@ -104,30 +105,54 @@ export class ViewSurveyComponent implements OnInit {
 
   send() {
     var Survey = { "qList": this.qList, "surveyName": this.surveyName };
-    var newResult;
+    var newResult = [];
+    var totalCheck = true;
+    for (var z = 0; z < this.qList.length; z++) {
+      var a = [];
+      a = this.qList[z].answerList;
+      var check = false;
+      for (var y = 0; y < a.length; y++) {
 
-    this.db.firestore().collection("results").doc(this.auth.curUser).get().then(surveyResults => {
-      console.log(surveyResults.exists);
-      if (surveyResults.exists) {
-        newResult = surveyResults.data()['surveyResults'];
-        console.log(newResult);
-        newResult.push(Survey);
-        this.db.firestore().collection("results").doc(this.auth.curUser).update({
-          surveyResults: newResult,
-        })
+        if (a[y].isSelected == true) {
+          check = true;
+        }
       }
-      else {
-        var myResult = [];
-        myResult.push(Survey);
-        this.db.firestore().collection("results").doc(this.auth.curUser).set({
-          surveyResults: myResult
-        })
-      }
+      if (check) {
 
-    })
+      } else {
+        alert("Please fill all of the questions!")
+        totalCheck = false;
+      }
+    }
+    if (totalCheck) {
+      this.db.firestore().collection("results").doc(this.auth.curUser).get().then(surveyResults => {
+        console.log(surveyResults.exists);
+        if (surveyResults.exists) {
+          newResult = surveyResults.data()['surveyResults'];
+          console.log(newResult);
+          newResult.push(Survey);
+          this.db.firestore().collection("results").doc(this.auth.curUser).update({
+            surveyResults: newResult,
+          })
+        }
+        else {
+          var myResult = [];
+          myResult.push(Survey);
+          this.db.firestore().collection("results").doc(this.auth.curUser).set({
+            surveyResults: myResult
+          })
+        }
+
+      })
+    }
+  
+  else{
+    return;
   }
+
 }
 
+}
 
 
 
