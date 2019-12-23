@@ -1,4 +1,4 @@
-import { SharedService } from './../../services/shared/shared.service';
+import { SharedService } from 'src/app/services/shared/shared.service';
 import { FirebaseApp } from '@angular/fire';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
