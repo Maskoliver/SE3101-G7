@@ -14,11 +14,16 @@ import { Component, OnInit } from '@angular/core';
 export class MakeSurveyComponent implements OnInit {
 
   qTitle = "";
+  qTitleEdit = "";
   qType = "";
+  qTypeEdit = "";
   isMultiple = false;
+  isMultipleEdit = false;
   answerList = [];
+  answerListEdit = [];
   surveyName = "";
   qList = [];
+  edittedIndex = -1;
   constructor(private fs: FirebaseApp, private authService: AuthService) {
 
   }
@@ -30,34 +35,98 @@ export class MakeSurveyComponent implements OnInit {
     var answer = { "answerTitle": "", "isSelected": false };
     this.answerList.push(answer);
   }
+  addAnswerPlaceEdit() {
+    var answer = { "answerTitle": "", "isSelected": false };
+    this.answerListEdit.push(answer);
+  }
 
   removeAnswerPlace(index: number) {
     this.answerList.splice(index, 1);
+  }
+  removeAnswerPlaceEdit(index: number) {
+    this.answerListEdit.splice(index, 1);
   }
 
   saveQuestion() {
     if (!this.qTitle) {
       alert("You have to enter a title for your question");
     } else if (this.answerList.length <= 1) {
+
       alert("You have to add at least 2 answers for the question");
     } else {
-
-      if (this.isMultiple) {
-        this.qType = 'multiple';
-      } else {
-        this.qType = 'single';
+      var checkIfAnswersHERE = true;
+      for (let i = 0; i < this.answerList.length; i++) {
+        if (this.answerList[i].answerTitle == "") {
+          checkIfAnswersHERE = false;
+        }
       }
-      var question = { "qType": this.qType, "qTitle": this.qTitle, "answerList": this.answerList };
-      this.qList.push(question);
+      if (checkIfAnswersHERE) {
+        if (this.isMultiple) {
+          this.qType = 'multiple';
+        } else {
+          this.qType = 'single';
+        }
+        var question = { "qType": this.qType, "qTitle": this.qTitle, "answerList": this.answerList };
+        this.qList.push(question);
 
-      this.qTitle = "";
-      this.answerList = [];
-      this.isMultiple = false;
+        this.qTitle = "";
+        this.answerList = [];
+        this.isMultiple = false;
+      } else {
+        alert("Answers can not be blank space");
+      }
+
+    }
+  }
+
+  saveEdittedQuestion() {
+    if (!this.qTitleEdit) {
+      alert("You have to enter a title for your question");
+    } else if (this.answerListEdit.length <= 1) {
+      alert("You have to add at least 2 answers for the question");
+    } else {
+      var checkIfAnswersHERE = true;
+      for (let i = 0; i < this.answerList.length; i++) {
+        if (this.answerList[i].answerTitle == "") {
+          checkIfAnswersHERE = false;
+        }
+      }
+      if (checkIfAnswersHERE) {
+        if (this.isMultipleEdit) {
+          this.qTypeEdit = 'multiple';
+        } else {
+          this.qTypeEdit = 'single';
+        }
+        var question = { "qType": this.qTypeEdit, "qTitle": this.qTitleEdit, "answerList": this.answerListEdit };
+        if (this.edittedIndex >= 0) {
+          this.qList[this.edittedIndex] = question;
+        } else {
+          alert("something wr-rong beep boop");
+        }
+
+
+        this.qTitleEdit = "";
+        this.answerListEdit = [];
+        this.isMultipleEdit = false;
+      } else {
+        alert("Answers can not be blank space");
+      }
     }
   }
 
   removeQuestion(index) {
     this.qList.splice(index, 1);
+  }
+
+  editQuestion(index: number) {
+    this.edittedIndex = index;
+    this.answerListEdit = this.qList[index].answerList;
+    this.qTitleEdit = this.qList[index].qTitle;
+    if (this.qList[index].qType == 'single') {
+      this.isMultiple = false;
+    } else {
+      this.isMultiple = true;
+    }
   }
 
   changeisMultiple(state: string) {
@@ -67,9 +136,17 @@ export class MakeSurveyComponent implements OnInit {
     } else {
       this.isMultiple = true;
     }
-    console.log(this.isMultiple);
   }
 
+  changeisMultipleEdit(state: string) {
+
+    if (state == 'single') {
+      this.isMultipleEdit = false;
+    } else {
+      this.isMultipleEdit = true;
+    }
+
+  }
   saveSurvey() {
     if (!this.surveyName) {
       alert("You have to enter a name for your Survey");

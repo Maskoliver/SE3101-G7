@@ -59,22 +59,24 @@
             </li>
           </td>
           <td><button style="background-color: red;color: white;" (click)="removeQuestion(i)">X</button></td>
-          <td scope="row"><button style="background-color:coral;color: white;" (click)="editQuestion(i)">Edit</button>
+          <td scope="row"><button style="background-color:coral;color: white;" (click)="frame2.show()"
+              (click)="editQuestion(i)">Edit</button>
           </td>
         </tr>
 
       </tbody>
     </table>
-    <button type="button" mdbBtn color="default" rounded="true" (click)="frame.show()" mdbWavesEffect>Add Question
+    <button type="button" mdbBtn color="blue" rounded="true" (click)="frame.show()" mdbWavesEffect>Add Question
     </button>
-    <button type="button" mdbBtn color="default" rounded="true" (click)="saveSurvey()" mdbWavesEffect>Save Survey
+    <button type="button" mdbBtn color="deep-purple" rounded="true" (click)="saveSurvey()" mdbWavesEffect>Save
+      Survey
     </button>
   </div>
 
 </div>
 
 
-<div mdbModal #frame="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog"
+<div mdbModal #frame="mdbModal" class="modal fade top modal-success" id="frameModalTop" tabindex="-1" role="dialog"
   aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-notify modal-warning" role="document">
     <div class="modal-content">
@@ -125,6 +127,64 @@
 
         <a type="button" mdbBtn color="warning" outline="true" class="waves-effect" mdbWavesEffect
           (click)="saveQuestion()">Save Question
+          <mdb-icon far icon="paper-plane" class="ml-1"></mdb-icon>
+        </a>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+
+<div mdbModal #frame2="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-notify modal-warning" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title white-text w-100 font-weight-bold py-2">Edit Question</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame2.hide()">
+          <span aria-hidden="true" class="white-text">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="md-form mb-5">
+          <mdb-icon fas icon="user" class="prefix grey-text"></mdb-icon>
+          <input type="text" id="form4" class="form-control" mdbInput [(ngModel)]="qTitleEdit">
+          <label for="form3">Question Title</label>
+
+        </div>
+        <div class="form-check form-check-inline">
+          <input type="radio" class="form-check-input" id="Single" name="inlineMaterialRadiosExample" mdbInput
+            (click)="changeisMultipleEdit('single')">
+          <label class="form-check-label" for="Single">Single Choice</label>
+        </div>
+
+        <div class="form-check form-check-inline" style="text-align: end;">
+          <input type="radio" class="form-check-input" id="Multiple" name="inlineMaterialRadiosExample" mdbInput
+            (click)="changeisMultipleEdit('multiple')">
+          <label class="form-check-label" for="Multiple">Multiple Choice</label>
+        </div>
+
+
+        <div class="md-form" *ngFor="let a of answerListEdit;index as i">
+          <mdb-icon fas icon="times" class="prefix red-text" (click)="removeAnswerPlaceEdit(i)"></mdb-icon>
+          <input type="text" class="form-control" [(ngModel)]="answerListEdit[i].answerTitle" mdbInput>
+          <label>Answer {{i+1}}</label>
+
+        </div>
+
+
+        <a type="button" mdbBtn color="warning" outline="true" class="waves-effect" mdbWavesEffect
+          (click)="addAnswerPlaceEdit()">Add Answer
+          <mdb-icon far icon="paper-plane" class="ml-1"></mdb-icon>
+        </a>
+      </div>
+
+      <!--Footer-->
+      <div class="modal-footer justify-content-center">
+
+        <a type="button" mdbBtn color="warning" outline="true" class="waves-effect" mdbWavesEffect
+          (click)="saveEdittedQuestion()" (click)="frame.hide()">Save Question
           <mdb-icon far icon="paper-plane" class="ml-1"></mdb-icon>
         </a>
       </div>
