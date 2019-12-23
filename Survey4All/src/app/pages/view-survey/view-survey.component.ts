@@ -1,3 +1,4 @@
+import { SharedService } from './../../services/shared/shared.service';
 
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
@@ -32,16 +33,17 @@ export class ViewSurveyComponent implements OnInit {
   answer: Object;
   answers = [];
   length = 0;
+  userName = "";
   answerTitle: any;
-  constructor(private db: FirebaseApp, private fbService: FirebaseService, private auth: AuthService) { }
+  constructor(private db: FirebaseApp, private fbService: FirebaseService, private auth: AuthService, private sharedService: SharedService) { }
 
 
   ngOnInit() {
 
-
+    this.sharedService.sharedCreator.subscribe(creator => this.userName = creator);
     var user = [];
     this.db.firestore().collection("surveys")
-      .doc("test@gmail.com")
+      .doc(this.userName)
       .get()
       .then(doc => {
         user = doc.data()["mySurveys"];
@@ -50,6 +52,7 @@ export class ViewSurveyComponent implements OnInit {
         })
         this.qList = this.surveys[0].qList;
         this.surveyName = this.surveys[0].surveyName;
+        this.sharedService.sharedName.subscribe(head => this.surveyName = head);
       })
     console.log(this.surveys)
 
@@ -61,22 +64,22 @@ export class ViewSurveyComponent implements OnInit {
     answerList = this.qList[indexQuestion].answerList;
     if (this.qList[indexQuestion].qType == "single") {
       for (var k = 0; k < answerList.length; k++) {
-     
-        if(k === indexAnswer){
+
+        if (k === indexAnswer) {
           console.log(k + " true");
-       answerList[k].isSelected=true;
-      }
-      else{
-        console.log(k + " false");
-        answerList[k].isSelected=false;
+          answerList[k].isSelected = true;
+        }
+        else {
+          console.log(k + " false");
+          answerList[k].isSelected = false;
+        }
       }
     }
-  }
-  else{
-    answerList[indexAnswer].isSelected=true;
-  }
-    
-      
+    else {
+      answerList[indexAnswer].isSelected = true;
+    }
+
+
     /*HTML kısmında sadece setstatus diyip çalıştırmıssın burdada this.isSelected == false yapmışssın ama kimin isSelectedi bu ?
     if (this.isSelected == false) {
 
@@ -92,11 +95,11 @@ export class ViewSurveyComponent implements OnInit {
     // bak sorumuzu aldık bile :) sadece indexini vermemiz yeterli
     // Soruyu aldıktan sorna bunun answerlistini bölmem gerek
 
-    
+
     //E cevaplarımızda geldi ne duruyoruz o zaman ? tek yapmamız gereken şuan sadece booleanı tersine çevirmek
-   
+
     //Burdan sonrasında işte single choicemu multiple mi bunların ayrımını yapmak ve sonra bunları kaydetmek sana kalıyor hadi ben kaçar.
-  
+
   }
 
   send() {

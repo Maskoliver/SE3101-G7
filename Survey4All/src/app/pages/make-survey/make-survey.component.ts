@@ -171,6 +171,7 @@ export class MakeSurveyComponent implements OnInit {
             alert("Survey Succesfully added");
             this.qList = [];
             this.qTitle = "";
+            this.surveyName = "";
           }).catch(err => {
             alert("There is an error : " + err);
           });
