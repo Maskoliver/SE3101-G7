@@ -50,13 +50,13 @@ export class ViewSurveyComponent implements OnInit {
         user.forEach(survey => {
           this.surveys.push(survey);
         })
-        this.qList = this.surveys[0].qList;
-        this.surveyName = this.surveys[0].surveyName;
         this.sharedService.sharedName.subscribe(head => this.surveyName = head);
+        for (let i = 0; i < this.surveys.length; i++) {
+          if (this.surveys[i].surveyName == this.surveyName) {
+            this.qList = this.surveys[i].qList;
+          }
+        }
       })
-    console.log(this.surveys)
-
-    console.log(length)
   }
 
   setStatus(indexAnswer: number, indexQuestion: number) {
@@ -75,10 +75,10 @@ export class ViewSurveyComponent implements OnInit {
         }
       }
     }
-    else {
-      answerList[indexAnswer].isSelected = true;
-    }
 
+    else {
+      answerList[indexAnswer].isSelected = !answerList[indexAnswer].isSelected;
+    }
 
     /*HTML kısmında sadece setstatus diyip çalıştırmıssın burdada this.isSelected == false yapmışssın ama kimin isSelectedi bu ?
     if (this.isSelected == false) {
