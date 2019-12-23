@@ -43,6 +43,6 @@ export class BrowseComponent implements OnInit {
   goView(name, user) {
     this.sharedService.goSurvey(name, user);
     var name = name;
-    this.router.navigate(['/view-survey/:name'])
+    this.router.navigate(['/view-survey'])
   }
 }
