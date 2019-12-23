@@ -32,6 +32,7 @@ export class ViewSurveyComponent implements OnInit {
   answer: Object;
   answers = [];
   length = 0;
+  answerTitle: any;
   constructor(private db: FirebaseApp, private fbService: FirebaseService, private auth: AuthService) { }
 
 
@@ -76,6 +77,27 @@ export class ViewSurveyComponent implements OnInit {
     //E cevaplarımızda geldi ne duruyoruz o zaman ? tek yapmamız gereken şuan sadece booleanı tersine çevirmek
     answerList[indexAnswer].isSelected = !answerList[indexAnswer].isSelected;
     //Burdan sonrasında işte single choicemu multiple mi bunların ayrımını yapmak ve sonra bunları kaydetmek sana kalıyor hadi ben kaçar.
+
+  }
+  addAnswerPlace() {
+    var answer = { "answerTitle": "", "isSelected": false };
+    this.answerList.push(answer);
+  }
+
+
+  
+  send() {
+  
+    var Survey = { "qList": this.qList, "surveyName": this.surveyName };
+    var surveyResult = [];
+      console.log(surveyResult);
+      surveyResult.push(Survey);
+    
+      this.db.firestore().collection("results").doc(this.auth.curUser).set({
+        surveyResult,
+   
+    })
+
 
   }
 }
