@@ -15,6 +15,7 @@ import * as firebase from 'firebase/app'
 })
 export class EditprofileComponent implements OnInit {
   submitClick: boolean = true;
+  IsPhoneNegative:boolean=false;
   photoClick: boolean = true;
   photoUrl: string;
   photo: File = null;
@@ -83,10 +84,16 @@ export class EditprofileComponent implements OnInit {
 
   }
   update(name: string, surname: string, email: string, phone: string) {
-    var username = name + " " + surname;
+    var phoneNum=+phone;
+    if(phoneNum>0){var username = name + " " + surname;
     this.fbService.update(username, email, phone);
     this.loadUserInfo();
     this.submitClick = false;
+    this.IsPhoneNegative=false;
+  }else{
+    this.IsPhoneNegative=true;
+  }
+    
   }
 
 }
