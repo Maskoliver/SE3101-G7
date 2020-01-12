@@ -15,6 +15,7 @@ export class BrowseComponent implements OnInit {
   surveyCreators = [];
   selectedUser = "";
   user = "";
+  isFavorite:boolean=false;
   constructor(private router: Router, private db: FirebaseApp, private sharedService: SharedService) {
 
   }
@@ -44,5 +45,14 @@ export class BrowseComponent implements OnInit {
     this.sharedService.goSurvey(name, user);
     var name = name;
     this.router.navigate(['/view-survey'])
+  }
+
+  addFavoriteSurvey(){
+    this.isFavorite=true;
+    console.log("favorilere eklendi")
+  }
+  deleteFavoriteSurvey(){
+    this.isFavorite=false;
+    console.log("çıkarıldı")
   }
 }

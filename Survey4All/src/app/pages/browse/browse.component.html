@@ -29,13 +29,13 @@
             </div>
             <h1>
                <div class="text-right" >
-                <a href="">
-                  <mdb-icon far icon="heart" style="color:red" >
-                  </mdb-icon>
-                </a>
-                <a href="">
+                <a  *ngIf="isFavorite" (click)="deleteFavoriteSurvey()">
                   <mdb-icon fas icon="heart" style="color:red" >
-                  </mdb-icon>
+                  </mdb-icon> 
+                </a>
+                <a  *ngIf="!isFavorite" (click)="addFavoriteSurvey()">
+                <mdb-icon  far icon="heart" style="color:red" >
+                  </mdb-icon> 
                 </a>
                </div> 
              
