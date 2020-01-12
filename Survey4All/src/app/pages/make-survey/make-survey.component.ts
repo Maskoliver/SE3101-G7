@@ -24,6 +24,7 @@ export class MakeSurveyComponent implements OnInit {
   surveyName = "";
   qList = [];
   edittedIndex = -1;
+  isSaved:boolean=false;
   constructor(private fs: FirebaseApp, private authService: AuthService) {
 
   }
@@ -172,6 +173,7 @@ export class MakeSurveyComponent implements OnInit {
             this.qList = [];
             this.qTitle = "";
             this.surveyName = "";
+            this.isSaved=true;
           }).catch(err => {
             alert("There is an error : " + err);
           });

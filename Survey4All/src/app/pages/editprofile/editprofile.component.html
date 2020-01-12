@@ -87,7 +87,9 @@
       </button>
       <div *ngIf="!submitClick" class="alert alert-success" role="alert" disabled="true">
             You Saved Your Information :)
+            <META HTTP-EQUIV="Refresh" CONTENT="0; URL=/main">
           </div>
+          
           <div *ngIf="IsPhoneNegative" class="alert alert-danger" role="alert">
             Phone can not be negative
           </div>

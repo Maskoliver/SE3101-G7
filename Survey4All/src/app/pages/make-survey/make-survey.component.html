@@ -183,10 +183,15 @@
       <!--Footer-->
       <div class="modal-footer justify-content-center">
 
-        <a type="button" mdbBtn color="warning" outline="true" class="waves-effect" mdbWavesEffect
+        <a *ngIf="!isSaved" type="button" mdbBtn color="warning" outline="true" class="waves-effect" mdbWavesEffect
           (click)="saveEdittedQuestion()" (click)="frame.hide()">Save Question
           <mdb-icon far icon="paper-plane" class="ml-1"></mdb-icon>
+
         </a>
+        <div *ngIf="isSaved" class="alert alert-success" role="alert" disabled="true">
+          Your Survey is Saved :)
+          <META HTTP-EQUIV="Refresh" CONTENT="0; URL=/main">
+        </div>
       </div>
     </div>
     <!--/.Content-->

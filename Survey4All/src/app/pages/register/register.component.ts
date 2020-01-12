@@ -25,7 +25,13 @@ export class RegisterComponent implements OnInit {
         if (password.length >= 8) {
           if (password === passwordCheck) {
             if (phone != null) {
-              this.fbService.register(username, password, email, phone);
+              var phoneNum=+phone;
+              if(phoneNum>0){
+                this.fbService.register(username, password, email, phone);
+              }else{
+                alert("Phone Number Can Not Be Negative");
+              }
+              
             }
             else {
               //phone not entered

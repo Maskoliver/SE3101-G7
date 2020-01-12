@@ -35,7 +35,7 @@ export class ViewSurveyComponent implements OnInit {
   length = 0;
   userName = "";
   answerTitle: any;
-
+  isSend:boolean=false;
   constructor(private db: FirebaseApp, private fbService: FirebaseService, private auth: AuthService, private sharedService: SharedService) { }
 
 
@@ -134,6 +134,7 @@ export class ViewSurveyComponent implements OnInit {
           this.db.firestore().collection("results").doc(this.auth.curUser).update({
             surveyResults: newResult,
           })
+          this.isSend=true;
         }
         else {
           var myResult = [];
@@ -141,6 +142,7 @@ export class ViewSurveyComponent implements OnInit {
           this.db.firestore().collection("results").doc(this.auth.curUser).set({
             surveyResults: myResult
           })
+          this.isSend=true;
         }
 
       })
