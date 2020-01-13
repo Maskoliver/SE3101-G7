@@ -25,6 +25,7 @@ export class MakeSurveyComponent implements OnInit {
   qList = [];
   edittedIndex = -1;
   isSaved:boolean=false;
+  isFavorite:boolean=false;
   constructor(private fs: FirebaseApp, private authService: AuthService) {
 
   }
@@ -156,7 +157,7 @@ export class MakeSurveyComponent implements OnInit {
       alert("You have to add at least 1 question for your Survey");
     }
     else {
-      var Survey = { "qList": this.qList, "surveyName": this.surveyName };
+      var Survey = { "qList": this.qList, "surveyName": this.surveyName ,/*"isFavorite":this.isFavorite*/};
       var surveys = [];
       this.fs.firestore().collection("surveys").doc(this.authService.curUser).get().then(mySurveys => {
         surveys = mySurveys.data()["mySurveys"];
@@ -174,6 +175,7 @@ export class MakeSurveyComponent implements OnInit {
             this.qTitle = "";
             this.surveyName = "";
             this.isSaved=true;
+            //this.isFavorite;
           }).catch(err => {
             alert("There is an error : " + err);
           });

@@ -12,9 +12,9 @@
       <p class="text-center w-responsive mx-auto mb-5">You can choose a topic, search a survey or just browse 'em all!
       </p>
       <section>
-        <div class="row text-center">
+        <div class="row text-center" >
           
-          <div class="col-lg-4 col-md-6 mb-4"
+          <div class="col-lg-4 col-md-6 mb-4" 
             *ngFor="let survey of surveys| surveyFilter:filterText ;index as i;let even = even ">
             <div class="view overlay rounded z-depth-1 waves-light" mdbWavesEffect>
               
@@ -27,19 +27,21 @@
                 <div class="mask rgba-white-slight"></div>
               </a>
             </div>
-            <h1>
-               <div class="text-right" >
-                <a  *ngIf="isFavorite" (click)="deleteFavoriteSurvey()">
+           <!--
+             <h1 >
+               <div  class="text-right" *ngIf=" authService.curUser != 'Unregistered'" >
+                <a  *ngIf="isFavorite" (click)="deleteFavoriteSurvey(survey.surveyName,surveyCreators[i])">
                   <mdb-icon fas icon="heart" style="color:red" >
                   </mdb-icon> 
                 </a>
-                <a  *ngIf="!isFavorite" (click)="addFavoriteSurvey()">
+                <a  *ngIf="!isFavorite" (click)="addFavoriteSurvey(survey.surveyName,surveyCreators[i])" >
                 <mdb-icon  far icon="heart" style="color:red" >
                   </mdb-icon> 
                 </a>
-               </div> 
+               </div > 
              
-            </h1 >
+            </h1  >
+           --> 
             <mdb-card-body class="mt-3">
               
               <h4>
