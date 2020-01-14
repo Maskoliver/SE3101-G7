@@ -29,8 +29,11 @@ export class MySurveysComponent implements OnInit {
         if (user.data()["mySurveys"]) {
           oneUser = user.data()["mySurveys"];
           oneUser.forEach(survey => {
-            this.surveys.push(survey);
+            if(this.user==this.authService.getUserMail()){
+               this.surveys.push(survey);
             this.surveyCreators.push(this.user);
+            }
+           
           })
         }
       })
