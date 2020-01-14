@@ -28,6 +28,7 @@
       </mdb-card-body>
     </mdb-card>
   </div>
+
   <a *ngIf="!isSend"  type="submit" mdbBtn color="primary" (click)="send()" mdbWavesEffect>Send</a>
   <div *ngIf="isSend" class="alert alert-success" role="alert" disabled="true">
     Your Survey is Sended :)

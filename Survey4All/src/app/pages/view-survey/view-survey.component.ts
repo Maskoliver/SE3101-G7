@@ -35,9 +35,9 @@ export class ViewSurveyComponent implements OnInit {
   length = 0;
   userName = "";
   answerTitle: any;
+  notAnswered:boolean=false;
   isSend:boolean=false;
   constructor(private db: FirebaseApp, private fbService: FirebaseService, private auth: AuthService, private sharedService: SharedService) { }
-
 
   ngOnInit() {
 
@@ -101,7 +101,7 @@ export class ViewSurveyComponent implements OnInit {
       if (check) {
 
       } else {
-        alert("Please fill all of the questions!")
+     alert("Fill all the answers plz")
         totalCheck = false;
       }
     }
