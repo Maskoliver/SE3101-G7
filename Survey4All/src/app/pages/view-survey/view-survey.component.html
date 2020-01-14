@@ -27,6 +27,9 @@
       </mdb-card-body>
     </mdb-card>
   </div>
-  <a type="submit" mdbBtn color="primary" (click)="send()" mdbWavesEffect>Send</a>
-
+  <a *ngIf="!isSend"  type="submit" mdbBtn color="primary" (click)="send()" mdbWavesEffect>Send</a>
+  <div *ngIf="isSend" class="alert alert-success" role="alert" disabled="true">
+    Your Survey is Sended :)
+    <META HTTP-EQUIV="Refresh" CONTENT="0; URL=/main">
+  </div>
 </div>

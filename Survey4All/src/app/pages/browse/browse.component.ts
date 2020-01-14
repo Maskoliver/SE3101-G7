@@ -3,6 +3,7 @@ import { FirebaseApp } from '@angular/fire';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FirebaseService } from 'src/app/services/firebase/firebase.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-browse',
@@ -15,7 +16,8 @@ export class BrowseComponent implements OnInit {
   surveyCreators = [];
   selectedUser = "";
   user = "";
-  constructor(private router: Router, private db: FirebaseApp, private sharedService: SharedService) {
+  isFavorite:boolean=false;
+  constructor(private router: Router, private db: FirebaseApp, private sharedService: SharedService,private authService: AuthService) {
 
   }
 
@@ -45,4 +47,28 @@ export class BrowseComponent implements OnInit {
     var name = name;
     this.router.navigate(['/view-survey'])
   }
+
+ /* addFavoriteSurvey(surveyName:string,user:string){
+    this.db.firestore().collection("surveys").doc(user).get().then(mySurveys => {
+      var list=mySurveys[0];
+      
+      
+        if(surveyName==list.surveyName){
+            list.isFavorite=true;
+
+        
+        
+      }
+      mySurveys[0]=list;
+      this.db.firestore().collection("surveys").doc("user").update({
+        mySurveys
+      })
+      
+      
+    })
+  }
+  deleteFavoriteSurvey(){
+    this.isFavorite=false;
+    console.log("çıkarıldı")
+  }*/
 }
