@@ -31,7 +31,7 @@ import { UploadService } from './uploads/shared/upload.service';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { FavoriteSurveyComponent } from './pages/favorite-survey/favorite-survey.component';
 import { SurveyFilterPipe } from './pages/browse/survey-filter.pipe';
-import { MySurveysComponent } from './my-surveys/my-surveys.component';
+import { MySurveysComponent } from './pages/my-surveys/my-surveys.component';
 
 
 @NgModule({
