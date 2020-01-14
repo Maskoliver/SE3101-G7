@@ -22,6 +22,11 @@
           <mdb-icon fas icon="user-plus"></mdb-icon>Sign up
         </a>
       </li>
+      <li class="nav-item" *ngIf="authService.navLoggedIn">
+        <a class="nav-link waves-light" href="/makesurvey" mdbWavesEffect>
+          <mdb-icon fas icon="plus-circle"></mdb-icon>Create Survey
+        </a>
+      </li>
       <li class="nav-item" *ngIf="!authService.navLoggedIn">
         <a class="nav-link waves-light" mdbWavesEffect (click)="goLogin()">
           <mdb-icon fas icon="sign-in-alt"></mdb-icon>Login
