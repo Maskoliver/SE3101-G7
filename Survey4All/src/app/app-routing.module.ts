@@ -12,7 +12,7 @@ import { ResultComponent } from './pages/result/result.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { EditprofileComponent } from './pages/editprofile/editprofile.component';
 import { ViewSurveyComponent } from './pages/view-survey/view-survey.component';
-
+import {  MySurveysComponent } from './pages/my-surveys/my-surveys.component';
 const routes: Routes = [
     { path: '', redirectTo: 'main', pathMatch: 'full' },
     { path: 'main', component: MainComponent },
@@ -26,6 +26,7 @@ const routes: Routes = [
     { path: 'forgotPassword', component: ForgotPasswordComponent },
     { path: 'editprofile', component: EditprofileComponent },
     { path: 'view-survey', component: ViewSurveyComponent },
+    { path: 'my-surveys', component: MySurveysComponent },
 ];
 
 @NgModule({
