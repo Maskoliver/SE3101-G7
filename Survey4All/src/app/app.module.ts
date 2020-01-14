@@ -34,6 +34,7 @@ import { SurveyFilterPipe } from './pages/browse/survey-filter.pipe';
 import { MySurveysComponent } from './pages/my-surveys/my-surveys.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,6 +56,7 @@ import { MySurveysComponent } from './pages/my-surveys/my-surveys.component';
     FavoriteSurveyComponent,
     SurveyFilterPipe,
     MySurveysComponent,
+    
 
 
   ],
