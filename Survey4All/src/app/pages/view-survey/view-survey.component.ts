@@ -81,25 +81,6 @@ export class ViewSurveyComponent implements OnInit {
       answerList[indexAnswer].isSelected = !answerList[indexAnswer].isSelected;
     }
 
-    /*HTML kısmında sadece setstatus diyip çalıştırmıssın burdada this.isSelected == false yapmışssın ama kimin isSelectedi bu ?
-    if (this.isSelected == false) {
-
-      this.isSelected = true;
-    } else {
-
-      this.isSelected = false;
-    }
-    Asıl ypaman gerekn bunun indexini almak o indexteki isSelectedi değiştirmek
-    Sen şimdi iç içe diye kafan karıştı ama html de iç içe iki for var zaten yani
-     hangi sorudason bunu da bilebileceğin bir index var o yüzden 2 indexi de alıyoruz
-    */
-    // bak sorumuzu aldık bile :) sadece indexini vermemiz yeterli
-    // Soruyu aldıktan sorna bunun answerlistini bölmem gerek
-
-
-    //E cevaplarımızda geldi ne duruyoruz o zaman ? tek yapmamız gereken şuan sadece booleanı tersine çevirmek
-
-    //Burdan sonrasında işte single choicemu multiple mi bunların ayrımını yapmak ve sonra bunları kaydetmek sana kalıyor hadi ben kaçar.
 
   }
 
