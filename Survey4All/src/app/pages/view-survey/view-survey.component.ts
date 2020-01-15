@@ -35,8 +35,8 @@ export class ViewSurveyComponent implements OnInit {
   length = 0;
   userName = "";
   answerTitle: any;
-  notAnswered:boolean=false;
-  isSend:boolean=false;
+  notAnswered: boolean = false;
+  isSend: boolean = false;
   constructor(private db: FirebaseApp, private fbService: FirebaseService, private auth: AuthService, private sharedService: SharedService) { }
 
   ngOnInit() {
@@ -101,21 +101,19 @@ export class ViewSurveyComponent implements OnInit {
       if (check) {
 
       } else {
-     alert("Fill all the answers plz")
+        alert("Fill all the answers plz")
         totalCheck = false;
       }
     }
     if (totalCheck) {
       this.db.firestore().collection("results").doc(this.auth.curUser).get().then(surveyResults => {
-        console.log(surveyResults.exists);
         if (surveyResults.exists) {
           newResult = surveyResults.data()['surveyResults'];
-          console.log(newResult);
           newResult.push(Survey);
           this.db.firestore().collection("results").doc(this.auth.curUser).update({
             surveyResults: newResult,
           })
-          this.isSend=true;
+          this.isSend = true;
         }
         else {
           var myResult = [];
@@ -123,17 +121,17 @@ export class ViewSurveyComponent implements OnInit {
           this.db.firestore().collection("results").doc(this.auth.curUser).set({
             surveyResults: myResult
           })
-          this.isSend=true;
+          this.isSend = true;
         }
 
       })
     }
-  
-  else{
-    return;
-  }
 
-}
+    else {
+      return;
+    }
+
+  }
 
 }
 

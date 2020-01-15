@@ -19,6 +19,7 @@ export class ResultComponent implements OnInit {
   qCount = 0;
   surveyRes = [];
   AnswerSheet = [];
+  totalSolves = 0;
   constructor(private sharedService: SharedService, private authService: AuthService, private FirebaseService: FirebaseService) { }
 
   ngOnInit() {
@@ -41,6 +42,7 @@ export class ResultComponent implements OnInit {
             this.surveyRes = doc.data()["surveyResults"];
             for (let i = 0; i < this.surveyRes.length; i++) {
               if (this.surveyRes[i].surveyName == this.surveyName) {
+                this.totalSolves += 1;
                 var myQList = [];
                 myQList = this.surveyRes[i].qList;
                 this.qCount = myQList.length;
