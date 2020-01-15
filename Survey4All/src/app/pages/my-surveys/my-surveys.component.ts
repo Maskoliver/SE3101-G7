@@ -19,6 +19,10 @@ export class MySurveysComponent implements OnInit {
   user = "";
   isFavorite:boolean=false;
   constructor(private router: Router, private db: FirebaseApp, private sharedService: SharedService,private authService: AuthService) { }
+  
+  goResults() {
+    this.router.navigate(['result']);
+  }
 
   ngOnInit() {
     this.db.firestore().collection("surveys").get().then(surveysByUsers => {

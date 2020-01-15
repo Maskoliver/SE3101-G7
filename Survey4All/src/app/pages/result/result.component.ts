@@ -11,7 +11,7 @@ export class ResultComponent implements OnInit {
 
   ngOnInit() {
   }
-
+ 
   public chartType: string = 'bar';
 
   public chartDatasets: Array<any> = [
