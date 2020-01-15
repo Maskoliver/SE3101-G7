@@ -8,7 +8,7 @@ export class SharedService {
     private surveyCreator = new BehaviorSubject('Unknown');
     sharedName = this.surveyName.asObservable();
     sharedCreator = this.surveyCreator.asObservable();
-
+   
     constructor() { }
 
     goSurvey(head: string, creator: string) {

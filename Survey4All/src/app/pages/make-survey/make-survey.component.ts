@@ -26,11 +26,19 @@ export class MakeSurveyComponent implements OnInit {
   edittedIndex = -1;
   isSaved:boolean=false;
   isFavorite:boolean=false;
+ 
+  todaysDataTime = '';
+  today: Date;
   constructor(private fs: FirebaseApp, private authService: AuthService) {
-
+                       
   }
 
   ngOnInit() {
+    this.today=new Date();
+    console.log(this.today);
+    var dt= new Date(Date.now() + 1000 /*sec*/ * 60 /*min*/ * 60 /*hour*/ * 24 /*day*/ * 90);
+    console.log(dt);
+    
   }
 
   addAnswerPlace() {
@@ -150,6 +158,8 @@ export class MakeSurveyComponent implements OnInit {
 
   }
   saveSurvey() {
+    
+  this.today= new Date();
     if (!this.surveyName) {
       alert("You have to enter a name for your Survey");
     }
@@ -157,7 +167,7 @@ export class MakeSurveyComponent implements OnInit {
       alert("You have to add at least 1 question for your Survey");
     }
     else {
-      var Survey = { "qList": this.qList, "surveyName": this.surveyName ,/*"isFavorite":this.isFavorite*/};
+      var Survey = { "qList": this.qList, "surveyName": this.surveyName ,/*"isFavorite":this.isFavorite*/"timeCreated":this.today};
       var surveys = [];
       this.fs.firestore().collection("surveys").doc(this.authService.curUser).get().then(mySurveys => {
         surveys = mySurveys.data()["mySurveys"];

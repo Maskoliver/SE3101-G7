@@ -37,6 +37,7 @@ export class ViewSurveyComponent implements OnInit {
   answerTitle: any;
   notAnswered:boolean=false;
   isSend:boolean=false;
+  timeCreated:Date;
   constructor(private db: FirebaseApp, private fbService: FirebaseService, private auth: AuthService, private sharedService: SharedService) { }
 
   ngOnInit() {
@@ -58,6 +59,7 @@ export class ViewSurveyComponent implements OnInit {
           }
         }
       })
+     
   }
 
   setStatus(indexAnswer: number, indexQuestion: number) {
