@@ -19,25 +19,38 @@ export class BrowseComponent implements OnInit {
   selectedUser = "";
   user = "";
   isFavorite: boolean = false;
-  today: Date;
-  startDate:number;
-  endDate:Date;
+  isSolved = [];
+  resultSet = [];
   constructor(private router: Router, private db: FirebaseApp, private sharedService: SharedService, private authService: AuthService) {
 
   }
 
   ngOnInit() {
-    this.today = new Date();
   //  console.log(this.today);
    this.surveyCreationDate=[];
     this.db.firestore().collection("surveys").get().then(surveysByUsers => {
       this.surveys = [];
+      this.solvedSurveys();
+
       surveysByUsers.forEach(user => {
         this.user = user.id;
         var oneUser = [];
         if (user.data()["mySurveys"]) {
           oneUser = user.data()["mySurveys"];
           oneUser.forEach(survey => {
+            var check = true;
+            for (let index = 0; index < this.resultSet.length; index++) {
+              if (this.resultSet[index] == survey.surveyName) {
+                check = false;
+              }
+
+            }
+            if (!check) {
+              this.isSolved.push(false);
+            } else {
+              this.isSolved.push(true);
+            }
+            console.log(this.isSolved);
             this.surveys.push(survey);
             this.surveyCreators.push(this.user);
             if (survey.timeCreated) {
@@ -46,12 +59,12 @@ export class BrowseComponent implements OnInit {
             else {
               this.surveyCreationDate.push("");
             }
-            for(let i=0;i<this.surveyCreationDate.length;i++){
+      //      for(let i=0;i<this.surveyCreationDate.length;i++){
             // console.log( this.surveyCreationDate[i]);
-           this.startDate= this.surveyCreationDate[i];
-           this.endDate= new Date(this.startDate + 1000 /*sec*/ * 60 /*min*/ * 60 /*hour*/ * 24 /*day*/ * 90);
-           console.log(this.endDate);
-            }
+        //   this.startDate= this.surveyCreationDate[i];
+          // this.endDate= new Date(this.startDate + 1000 /*sec*/ * 60 /*min*/ * 60 /*hour*/ * 24 /*day*/ * 90);
+           //console.log(this.endDate);
+         //   }
        // console.log(this.surveyCreationDate);
           })
         }
@@ -66,6 +79,17 @@ export class BrowseComponent implements OnInit {
     this.sharedService.goSurvey(name, user);
     var name = name;
     this.router.navigate(['/view-survey'])
+  }
+
+  solvedSurveys() {
+    this.db.firestore().collection('results').doc(this.authService.curUser).get().then(results => {
+      var resultSet = [];
+      resultSet = results.data()['surveyResults'];
+      for (let index = 0; index < resultSet.length; index++) {
+        this.resultSet.push(resultSet[index].surveyName);
+      }
+
+    })
   }
 
   /* addFavoriteSurvey(surveyName:string,user:string){

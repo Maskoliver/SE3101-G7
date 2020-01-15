@@ -1,16 +1,18 @@
 <div class="container">
   <h1 style="color: red" class="animated bounce ">Survey Results</h1>
-<p>Survey Name: </p>
-<p>Question: </p>
-<div class="row">
-  <div class="col md-6">
-    <p>Answer: 
-    </p>
+  <p>Survey Name: {{surveyName}}</p>
+  <p>Total Participant Count: {{totalCount}}</p>
+  <div *ngFor="let q of qList;index as i">
+    <p>Question: {{q.qTitle}}</p>
+    <div class="row" *ngFor="let ans of q.answerList;index as j">
+      <div class="col md-6">
+        <p>Answer: {{ans.answerTitle}}
+        </p>
+      </div>
+      <div class="col-md-6">
+        <p>Vote count/rate: {{AnswerSheet[i].answerSheet[j]}}
+        </p>
+      </div>
+    </div>
   </div>
-  <div class="col-md-6">
-    <p>Vote count/rate:
-    </p>
-  </div>
-</div>
-
 </div>

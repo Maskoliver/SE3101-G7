@@ -17,11 +17,14 @@
 
         <div *ngFor="let answer of question.answerList; index as ind">
           <div *ngIf="answer.isSelected==true">
-            <button style="background-color:#007bff;height:17px;width:17px;border-radius: 100%;border-color: #007bff;" (click)="setStatus(ind,i)"></button>
+            <button style="background-color:#007bff;height:17px;width:17px;border-radius: 100%;border-color: #007bff;"
+              (click)="setStatus(ind,i)"></button>
             <span style="margin-top:-5%"> {{answer.answerTitle}}</span>
           </div>
           <div *ngIf="answer.isSelected==false">
-            <button style="background-color:white;height:17px;width:17px;border-radius: 100%;border-color: gray;border-width: 1px;" (click)="setStatus(ind,i)"></button>
+            <button
+              style="background-color:white;height:17px;width:17px;border-radius: 100%;border-color: gray;border-width: 1px;"
+              (click)="setStatus(ind,i)"></button>
             <span style="margin-top:-5%"> {{answer.answerTitle}}</span>
           </div>
 
@@ -30,9 +33,9 @@
     </mdb-card>
   </div>
 
-  <a *ngIf="!isSend"  type="submit" mdbBtn color="primary" (click)="send()" mdbWavesEffect>Send</a>
+  <a *ngIf="!isSend" type="submit" mdbBtn color="primary" (click)="send()" mdbWavesEffect>Send</a>
   <div *ngIf="isSend" class="alert alert-success" role="alert" disabled="true">
     Your Survey is Sended :)
-    <META HTTP-EQUIV="Refresh" CONTENT="0; URL=/main">
+
   </div>
 </div>

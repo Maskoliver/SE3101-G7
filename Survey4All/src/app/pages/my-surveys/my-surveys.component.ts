@@ -17,10 +17,11 @@ export class MySurveysComponent implements OnInit {
   surveyCreators = [];
   selectedUser = "";
   user = "";
-  isFavorite:boolean=false;
-  constructor(private router: Router, private db: FirebaseApp, private sharedService: SharedService,private authService: AuthService) { }
-  
-  goResults() {
+  isFavorite: boolean = false;
+  constructor(private router: Router, private db: FirebaseApp, private sharedService: SharedService, private authService: AuthService) { }
+
+  goResults(name: string) {
+    this.sharedService.goSurvey(name, this.user);
     this.router.navigate(['result']);
   }
 
@@ -33,11 +34,11 @@ export class MySurveysComponent implements OnInit {
         if (user.data()["mySurveys"]) {
           oneUser = user.data()["mySurveys"];
           oneUser.forEach(survey => {
-            if(this.user==this.authService.getUserMail()){
-               this.surveys.push(survey);
-            this.surveyCreators.push(this.user);
+            if (this.user == this.authService.getUserMail()) {
+              this.surveys.push(survey);
+              this.surveyCreators.push(this.user);
             }
-           
+
           })
         }
       })
