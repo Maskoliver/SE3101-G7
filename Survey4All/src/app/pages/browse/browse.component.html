@@ -50,7 +50,7 @@
 
               <div class="row">
 
-                <div class="col">
+                <div class="col" *ngIf="authService.curUser != 'Unregistered'">
                   <a mdbBtn color="indigo" size="sm" class="waves-light" mdbWavesEffect
                     (click)="goView(survey.surveyName,surveyCreators[i])" *ngIf="!isSolved[i]">
                     <mdb-icon far icon="clone" class="left"></mdb-icon> Fill Survey
@@ -59,6 +59,12 @@
                     style="color: blueviolet;">
                     <mdb-icon far icon="clone" class="left"></mdb-icon> You already Completed this Survey!
                   </a>
+                </div>
+                <div class="col" *ngIf="authService.curUser == 'Unregistered'">
+                  <a mdbBtn color="red" size="sm" class="waves-light" mdbWavesEffect>
+                    You need to Log in First
+                  </a>
+
                 </div>
               </div>
 
