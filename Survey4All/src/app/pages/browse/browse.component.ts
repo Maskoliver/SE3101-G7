@@ -26,8 +26,8 @@ export class BrowseComponent implements OnInit {
   }
 
   ngOnInit() {
-  //  console.log(this.today);
-   this.surveyCreationDate=[];
+    //  console.log(this.today);
+    this.surveyCreationDate = [];
     this.db.firestore().collection("surveys").get().then(surveysByUsers => {
       this.surveys = [];
       this.solvedSurveys();
@@ -59,13 +59,13 @@ export class BrowseComponent implements OnInit {
             else {
               this.surveyCreationDate.push("");
             }
-      //      for(let i=0;i<this.surveyCreationDate.length;i++){
+            // for(let i=0;i<this.surveyCreationDate.length;i++){
             // console.log( this.surveyCreationDate[i]);
-        //   this.startDate= this.surveyCreationDate[i];
-          // this.endDate= new Date(this.startDate + 1000 /*sec*/ * 60 /*min*/ * 60 /*hour*/ * 24 /*day*/ * 90);
-           //console.log(this.endDate);
-         //   }
-       // console.log(this.surveyCreationDate);
+            //   this.startDate= this.surveyCreationDate[i];
+            // this.endDate= new Date(this.startDate + 1000 /*sec*/ * 60 /*min*/ * 60 /*hour*/ * 24 /*day*/ * 90);
+            //console.log(this.endDate);
+            //   }
+            // console.log(this.surveyCreationDate);
           })
         }
       })
