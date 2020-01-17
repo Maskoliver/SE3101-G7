@@ -21,6 +21,7 @@ export class BrowseComponent implements OnInit {
   isFavorite: boolean = false;
   isSolved = [];
   resultSet = [];
+  surveyName: any;
   constructor(private router: Router, private db: FirebaseApp, private sharedService: SharedService, private authService: AuthService) {
 
   }
@@ -92,27 +93,34 @@ export class BrowseComponent implements OnInit {
     })
   }
 
-  /* addFavoriteSurvey(surveyName:string,user:string){
-     this.db.firestore().collection("surveys").doc(user).get().then(mySurveys => {
-       var list=mySurveys[0];
-       
-       
-         if(surveyName==list.surveyName){
-             list.isFavorite=true;
- 
-         
-         
-       }
-       mySurveys[0]=list;
-       this.db.firestore().collection("surveys").doc("user").update({
-         mySurveys
-       })
-       
-       
-     })
-   }
-   deleteFavoriteSurvey(){
-     this.isFavorite=false;
-     console.log("çıkarıldı")
-   }*/
+//   addFavoriteSurvey(surveyName: string) {
+//     var newResult =[];
+//     console.log(surveyName);
+//     var favoritesList = {"surveyName": surveyName};
+//     console.log(favoritesList);
+//         this.db.firestore().collection("users").doc(this.authService.curUser).get().then(favoritesList => {
+//       if (favoritesList.exists) {
+//         newResult = favoritesList.data()['favoritesList'];
+//         newResult.push(favoritesList);
+//         console.log(newResult);
+//         this.db.firestore().collection("users").doc(this.authService.curUser).update({
+//           favoritesList: newResult,
+//         })
+//         console.log("ey");
+//         this.isFavorite=true;
+//       }
+//       else {
+//         var myResult = [];
+//         myResult.push(favoritesList);
+//         console.log(myResult);
+//         this.db.firestore().collection("users").doc(this.authService.curUser).set({
+//           favoritesList: myResult
+//         })
+//       console.log("ay");
+      
+//       this.isFavorite=true;
+//       }
+
+//     })
+// }
 }

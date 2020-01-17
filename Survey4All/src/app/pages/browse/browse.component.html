@@ -27,21 +27,17 @@
                 <div class="mask rgba-white-slight"></div>
               </a>
             </div>
-            <!--
-             <h1 >
-               <div  class="text-right" *ngIf=" authService.curUser != 'Unregistered'" >
-                <a  *ngIf="isFavorite" (click)="deleteFavoriteSurvey(survey.surveyName,surveyCreators[i])">
-                  <mdb-icon fas icon="heart" style="color:red" >
-                  </mdb-icon> 
+
+              <!-- <div class="text-right"   *ngIf="authService.curUser != 'Unregistered'">
+                <a *ngIf="isFavorite" (click)="deleteFavoriteSurvey(survey.surveyName)">
+                  <mdb-icon fas icon="heart" size="sm" style="color:red">
+                  </mdb-icon>
                 </a>
-                <a  *ngIf="!isFavorite" (click)="addFavoriteSurvey(survey.surveyName,surveyCreators[i])" >
-                <mdb-icon  far icon="heart" style="color:red" >
-                  </mdb-icon> 
+                <a *ngIf="!isFavorite" (click)="addFavoriteSurvey(survey.surveyName)">
+                  <mdb-icon far icon="heart" size="sm" style="color:red">
+                  </mdb-icon>
                 </a>
-               </div > 
-             
-            </h1  >
-           -->
+              </div> -->
             <mdb-card-body class="mt-3">
 
               <h4>
@@ -52,13 +48,10 @@
 
                 <div class="col" *ngIf="authService.curUser != 'Unregistered'">
                   <a mdbBtn color="indigo" size="sm" class="waves-light" mdbWavesEffect
-                    (click)="goView(survey.surveyName,surveyCreators[i])" *ngIf="!isSolved[i]">
+                    (click)="goView(survey.surveyName,surveyCreators[i])"  zİİİ>
                     <mdb-icon far icon="clone" class="left"></mdb-icon> Fill Survey
                   </a>
-                  <a mdbBtn color="white" size="sm" class="waves-light" mdbWavesEffect *ngIf="isSolved[i]"
-                    style="color: blueviolet;">
-                    <mdb-icon far icon="clone" class="left"></mdb-icon> You already Completed this Survey!
-                  </a>
+                 
                 </div>
                 <div class="col" *ngIf="authService.curUser == 'Unregistered'">
                   <a mdbBtn color="red" size="sm" class="waves-light" mdbWavesEffect>
